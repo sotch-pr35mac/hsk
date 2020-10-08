@@ -11,7 +11,7 @@ use hsk::Hsk;
 fn main() {
 	let hsk_list = Hsk::new();
 	let character: &str = "成为";
-	let result: u8 = hsk_list.hsk(character);
+	let result: u8 = hsk_list.get_hsk(character);
 	println!("{:?}", result); // --> 4
 }
 ```
