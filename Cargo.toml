@@ -1,6 +1,6 @@
 [package]
 name = "hsk"
-version = "0.1.0"
+version = "0.1.1"
 authors = ["Preston Wang-Stosur-Bassett <p.wanstobas@gmail.com>"]
 description = "Return HSK Level for Simplified Chinese Characters"
 repository = "https://github.com/sotch-pr35mac/hsk"
