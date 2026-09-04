@@ -15,7 +15,8 @@ syllabus.
 | GF0025-2021 proficiency standard | MOE 260-page PDF, SHA-256 `e451fdf0…d73a63` | Native extraction rejected (only watermark text); RapidOCR limited to vocabulary pages 42-175 at scale 3 | 500 / 772 / 973 / 1,000 / 1,071 / 1,140 / 5,636 = 11,092 |
 | Current HSK exam syllabus | CTI 406-page PDF, SHA-256 `ec74ce04…04941` | Native PyMuPDF 1.26.4 table extraction, pages 80-354 | 11,000 source rows; 11,105 expanded level assignments |
 
-The exact CTI current-syllabus URL is recorded in `sources.json`; the document
+The exact CTI current-syllabus URL is recorded in the tooling repository's
+`sources.json`; the document
 is published 2025-11 and effective 2026-07-01. The official hosts timed out in
 the extraction environment, so the lock transparently records mirror transport
 and pending direct official-byte comparison. Two independent transport copies
@@ -64,15 +65,18 @@ names exact versus cumulative semantics.
 
 Build-time generation replaces runtime bincode decoding and per-instance hash
 map construction. `HskCatalog` is zero-sized; level enumeration is a static
-slice; lookup uses sorted static indexes and binary partition points. An
-all-system strict query normalizes both orthography and pinyin once.
-Representative Criterion
-benchmarks are included but timing is intentionally not a CI gate.
+slice; lookup uses borrowed normalized headwords, streaming decomposition,
+borrowed equal-key index ranges, direct dual-form intersection, and one-pass
+outcome construction. An all-system strict query normalizes both orthography
+and pinyin once. Representative Criterion benchmarks are included but timing
+is intentionally not a CI gate.
 
-A local optimized Criterion quick run measured representative strict hits at
-about 0.27 µs, strict misses at 0.39 µs, all-system lookup at 0.60 µs, and
-exact/cumulative slice enumeration at about 4 ns. These figures are environment
-specific and are included only as a regression baseline.
+A Criterion 0.7 quick run measured strict canonical hits at 0.48 µs, heavy
+normalization hits at 0.58 µs, misses at 0.48 µs, orthography ambiguity at
+0.44 µs, all-system lookup at 1.12 µs, and exact/cumulative enumeration at
+about 5.5 ns. The earlier Criterion 0.5 measurements in the historical report
+are not directly comparable; these figures are environment-specific diagnostic
+baselines.
 
 ## Release and validation
 
@@ -85,7 +89,10 @@ The final release gate results are recorded here after execution:
 - `cargo check --all-targets --all-features`: passed
 - `cargo test --all-targets --all-features`: passed (28 Rust assertions/tests,
   plus seven Criterion smoke targets; none ignored)
-- extraction and verification Python tests: passed (8 + 22)
-- structural validation for all canonical datasets: passed
-- `cargo package --allow-dirty`: passed; 95 files, 35.0 MiB unpacked / 3.5
-  MiB compressed, then compiled from packaged contents
+- extraction tests: passed (8, in `hsk_tooling`)
+- verification tests: not runnable on this host's Python 3.9; the existing
+  verifier requires Python 3.10+
+- `cargo package --allow-dirty`: passed; 25 listed files, no Python,
+  requirements, raw observations, verification fixtures, or Python CI files;
+  3.1 MiB unpacked / 563.5 KiB compressed
+- `hsk_tooling` initialized as a standalone local Git repository

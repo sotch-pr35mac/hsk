@@ -1,8 +1,0 @@
-{
-  "artifact_sha256": "7e3c8cac7f8c2be9c0f8b48ed155db234d065b1d874bb98bdc8b845e7a70c76c",
-  "engine": "python-stdlib-zipfile-etree",
-  "engine_version": "3.9.6",
-  "output_sha256": "d424becfeab0f699817ee20bb363298039d90659c41fe78e59303dfe87bc7b24",
-  "rows": 5001,
-  "source_id": "hsk2015"
-}

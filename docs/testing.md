@@ -12,23 +12,16 @@ cargo fmt --check
 cargo clippy --all-targets --all-features -- -D warnings
 cargo check --all-targets --all-features
 cargo test --all-targets --all-features
-python3 tools/hsk_data.py validate-config
-python3 tools/hsk_data.py validate --source hsk2015 --canonical data/hsk-sources/canonical/hsk2015.csv
-python3 tools/hsk_data.py validate --source proficiency2021 --canonical data/hsk-sources/canonical/proficiency2021.csv
-python3 tools/hsk_data.py validate --source hsk_exam2025 --canonical data/hsk-sources/canonical/hsk_exam2025.csv
-python3 -m unittest discover -s tools -p 'test_*.py' -v
-python3 -m unittest discover -s verification/tests -v
+cargo bench --bench lookup -- --quick
+cargo package --allow-dirty
 ```
 
-The structural checks are offline and must not download sources. Full
-byte-for-byte regeneration additionally requires the three ignored official
-artifacts and the pinned non-vendored verification inputs described in
-`data/hsk-sources/README.md`. Acquisition is a separate step and every artifact
-must match its recorded SHA-256 before extraction.
+The extraction and independent verification pipeline is maintained separately
+in `hsk_tooling`; it is not part of this Rust crate or its release gates.
 
 ## Required coverage
 
-The test suite asserts:
+The Rust test suite asserts:
 
 - official source-row and expanded-assignment counts for every supported level;
 - no unexpected blank fields, byte-order marks, control/replacement characters,

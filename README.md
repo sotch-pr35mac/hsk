@@ -79,12 +79,10 @@ crate does not invent separate level-seven, -eight, or -nine vocabulary lists.
 
 ## Provenance and reproduction
 
-[`data/hsk-sources/README.md`](data/hsk-sources/README.md) records official
-URLs, document dates, checksums, extraction tools, source limitations, and the
-deterministic regeneration process. Official artifacts stay out of the crate;
-`sources.lock.json` binds generated rows to their exact bytes. Independent
-transcriptions and licenses are documented under [`verification/`](verification/)
-and may produce discrepancy reports, but never overwrite source extraction.
+[`data/hsk-sources/PROVENANCE.md`](data/hsk-sources/PROVENANCE.md) records the
+authoritative URLs, document hashes, extraction methods, counts, and exported
+file hashes. The extraction and independent verification pipeline is maintained
+in the sibling `hsk_tooling` repository; it is not shipped with this crate.
 
 The Rust build converts reviewed CSV to static arrays and sorted lookup indexes.
 There is no runtime bincode parsing or per-catalog hash-map construction.
@@ -93,6 +91,6 @@ Version 1.0 is a breaking release. See [`MIGRATION.md`](MIGRATION.md).
 
 ## License
 
-The library and extraction code are MIT licensed. Source documents and
+The library is MIT licensed. Source documents and
 third-party verification data retain their respective terms; consult the
 provenance files before redistributing them.

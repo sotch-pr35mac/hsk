@@ -1,3 +1,5 @@
+use std::borrow::Cow;
+
 use unicode_normalization::UnicodeNormalization;
 
 fn tone_position(syllable: &[char]) -> Option<usize> {
@@ -44,13 +46,13 @@ fn append_syllable(
 }
 
 pub(crate) fn normalize_pinyin(input: &str) -> Result<String, &'static str> {
-    let decomposed: Vec<char> = input.nfd().collect();
     let mut output = String::with_capacity(input.len());
-    let mut syllable = Vec::new();
+    let mut syllable = Vec::with_capacity(8);
     let mut tone: Option<(u8, Option<usize>)> = None;
     let mut saw_content = false;
 
-    for (position, raw) in decomposed.iter().copied().enumerate() {
+    let mut decomposed = input.nfd().enumerate().peekable();
+    while let Some((_, raw)) = decomposed.next() {
         if raw.is_whitespace() || matches!(raw, '\'' | '’' | '‘' | 'ʼ' | '-' | '·' | '∥' | '…')
         {
             if matches!(raw, '\'' | '’' | '‘' | 'ʼ') && syllable.is_empty() && output.is_empty()
@@ -66,7 +68,7 @@ pub(crate) fn normalize_pinyin(input: &str) -> Result<String, &'static str> {
             if number > 5 || syllable.is_empty() || tone.is_some() {
                 return Err("invalid or repeated tone number");
             }
-            if let Some(next) = decomposed.get(position + 1).copied() {
+            if let Some((_, next)) = decomposed.peek().copied() {
                 if next.is_ascii_alphabetic()
                     && matches!(next.to_ascii_lowercase(), 'a' | 'e' | 'i' | 'o' | 'u')
                 {
@@ -141,12 +143,14 @@ pub(crate) fn normalize_pinyin(input: &str) -> Result<String, &'static str> {
     Ok(output)
 }
 
-pub(crate) fn normalize_headword(input: &str) -> Result<String, &'static str> {
-    let normalized: String = input.trim().nfc().collect();
-    if normalized.is_empty() {
+pub(crate) fn normalize_headword(input: &str) -> Result<Cow<'_, str>, &'static str> {
+    let trimmed = input.trim();
+    if trimmed.is_empty() {
         Err("orthography is empty")
+    } else if trimmed.is_ascii() || trimmed.nfc().eq(trimmed.chars()) {
+        Ok(Cow::Borrowed(trimmed))
     } else {
-        Ok(normalized)
+        Ok(Cow::Owned(trimmed.nfc().collect()))
     }
 }
 

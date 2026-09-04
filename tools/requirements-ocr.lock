@@ -1,4 +1,0 @@
-PyMuPDF==1.26.4
-numpy==2.0.2
-onnxruntime==1.19.2
-rapidocr_onnxruntime==1.4.4

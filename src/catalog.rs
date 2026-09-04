@@ -36,19 +36,24 @@ struct Dataset {
     offsets: &'static [usize],
 }
 
-enum NormalizedOrthography {
-    Simplified(String),
-    Traditional(String),
+type IndexRange = &'static [(&'static str, usize)];
+type CandidateRanges = (Dataset, IndexRange, Option<IndexRange>);
+
+enum NormalizedOrthography<'a> {
+    Simplified(std::borrow::Cow<'a, str>),
+    Traditional(std::borrow::Cow<'a, str>),
     Both {
-        simplified: String,
-        traditional: String,
+        simplified: std::borrow::Cow<'a, str>,
+        traditional: std::borrow::Cow<'a, str>,
     },
 }
 
-fn normalized_orthography(
-    orthography: Orthography<'_>,
-) -> Result<NormalizedOrthography, LookupError> {
-    let normalize = |value| normalize_headword(value).map_err(|_| LookupError::EmptyOrthography);
+fn normalized_orthography<'a>(
+    orthography: Orthography<'a>,
+) -> Result<NormalizedOrthography<'a>, LookupError> {
+    fn normalize<'a>(value: &'a str) -> Result<std::borrow::Cow<'a, str>, LookupError> {
+        normalize_headword(value).map_err(|_| LookupError::EmptyOrthography)
+    }
     match orthography {
         Orthography::Simplified(value) => normalize(value).map(NormalizedOrthography::Simplified),
         Orthography::Traditional(value) => normalize(value).map(NormalizedOrthography::Traditional),
@@ -86,57 +91,116 @@ fn dataset(system: HskSystem) -> Dataset {
 }
 
 fn indexed_candidates(
-    selected: Dataset,
     index: &'static [(&'static str, usize)],
     query: &str,
-) -> Vec<Classification> {
+) -> &'static [(&'static str, usize)] {
     let start = index.partition_point(|(headword, _)| *headword < query);
-    let end = index.partition_point(|(headword, _)| *headword <= query);
-    index[start..end]
-        .iter()
-        .map(|(_, row)| selected.rows[*row])
-        .collect()
+    let tail = &index[start..];
+    let end = tail.partition_point(|(headword, _)| *headword <= query);
+    &tail[..end]
 }
 
-fn candidates_for(
+fn candidate_ranges(
     system: HskSystem,
-    orthography: &NormalizedOrthography,
-) -> Result<Vec<Classification>, LookupError> {
+    orthography: &NormalizedOrthography<'_>,
+) -> Result<CandidateRanges, LookupError> {
     let selected = dataset(system);
     match orthography {
-        NormalizedOrthography::Simplified(value) => {
-            Ok(indexed_candidates(selected, selected.simplified, value))
-        }
-        NormalizedOrthography::Traditional(value) => {
-            Ok(indexed_candidates(selected, selected.traditional, value))
-        }
+        NormalizedOrthography::Simplified(value) => Ok((
+            selected,
+            indexed_candidates(selected.simplified, value),
+            None,
+        )),
+        NormalizedOrthography::Traditional(value) => Ok((
+            selected,
+            indexed_candidates(selected.traditional, value),
+            None,
+        )),
         NormalizedOrthography::Both {
             simplified,
             traditional,
-        } => {
-            let simplified_rows = indexed_candidates(selected, selected.simplified, simplified);
-            let traditional_rows = indexed_candidates(selected, selected.traditional, traditional);
-            let common: Vec<_> = simplified_rows
-                .iter()
-                .copied()
-                .filter(|row| traditional_rows.contains(row))
-                .collect();
-            if common.is_empty() && !simplified_rows.is_empty() && !traditional_rows.is_empty() {
-                Err(LookupError::ConflictingOrthographies)
-            } else {
-                Ok(common)
-            }
-        }
+        } => Ok((
+            selected,
+            indexed_candidates(selected.simplified, simplified),
+            Some(indexed_candidates(selected.traditional, traditional)),
+        )),
     }
 }
 
-fn outcome(rows: impl IntoIterator<Item = Classification>) -> LookupOutcome {
-    let matches: Vec<_> = rows.into_iter().map(WordMatch::new).collect();
+fn outcome(mut rows: impl Iterator<Item = Classification>) -> LookupOutcome {
+    let Some(first) = rows.next() else {
+        return LookupOutcome::NotFound;
+    };
+    let Some(second) = rows.next() else {
+        return LookupOutcome::Unique(WordMatch::new(first));
+    };
+    let mut matches = vec![WordMatch::new(first), WordMatch::new(second)];
+    matches.extend(rows.map(WordMatch::new));
     match matches.len() {
         0 => LookupOutcome::NotFound,
-        1 => LookupOutcome::Unique(matches[0]),
+        1 => unreachable!(),
         _ => LookupOutcome::Ambiguous(matches),
     }
+}
+
+struct MatchingRows<'a> {
+    selected: Dataset,
+    primary: &'static [(&'static str, usize)],
+    secondary: Option<&'static [(&'static str, usize)]>,
+    pinyin: Option<&'a str>,
+    position: usize,
+}
+
+impl Iterator for MatchingRows<'_> {
+    type Item = Classification;
+
+    fn next(&mut self) -> Option<Self::Item> {
+        while let Some((_, row)) = self.primary.get(self.position) {
+            self.position += 1;
+            if self
+                .secondary
+                .is_none_or(|secondary| secondary.iter().any(|(_, candidate)| candidate == row))
+                && self
+                    .pinyin
+                    .is_none_or(|key| self.selected.rows[*row].reading_matches(key))
+            {
+                return Some(self.selected.rows[*row]);
+            }
+        }
+        None
+    }
+}
+
+fn matching_rows<'a>(
+    selected: Dataset,
+    primary: &'static [(&'static str, usize)],
+    secondary: Option<&'static [(&'static str, usize)]>,
+    pinyin: Option<&'a str>,
+) -> Result<MatchingRows<'a>, LookupError> {
+    if let Some(secondary) = secondary {
+        if primary.is_empty() || secondary.is_empty() {
+            return Ok(MatchingRows {
+                selected,
+                primary,
+                secondary: Some(secondary),
+                pinyin,
+                position: 0,
+            });
+        }
+        let has_common = primary
+            .iter()
+            .any(|(_, row)| secondary.iter().any(|(_, candidate)| candidate == row));
+        if !has_common {
+            return Err(LookupError::ConflictingOrthographies);
+        }
+    }
+    Ok(MatchingRows {
+        selected,
+        primary,
+        secondary,
+        pinyin,
+        position: 0,
+    })
 }
 
 /// Zero-allocation catalog handle over build-time generated static data.
@@ -176,11 +240,13 @@ impl HskCatalog {
     ) -> Result<LookupOutcome, LookupError> {
         let orthography = normalized_orthography(orthography)?;
         let pinyin = normalize_pinyin(pinyin).map_err(LookupError::InvalidPinyin)?;
-        Ok(outcome(
-            candidates_for(system, &orthography)?
-                .into_iter()
-                .filter(|row| row.reading_matches(&pinyin)),
-        ))
+        let (selected, primary, secondary) = candidate_ranges(system, &orthography)?;
+        Ok(outcome(matching_rows(
+            selected,
+            primary,
+            secondary,
+            Some(&pinyin),
+        )?))
     }
 
     /// Look up spelling alone. Multiple readings/senses remain ambiguous.
@@ -190,7 +256,8 @@ impl HskCatalog {
         orthography: Orthography<'_>,
     ) -> Result<LookupOutcome, LookupError> {
         let orthography = normalized_orthography(orthography)?;
-        Ok(outcome(candidates_for(system, &orthography)?))
+        let (selected, primary, secondary) = candidate_ranges(system, &orthography)?;
+        Ok(outcome(matching_rows(selected, primary, secondary, None)?))
     }
 
     /// Perform one normalized, reading-qualified query against every system.
@@ -204,11 +271,9 @@ impl HskCatalog {
         SYSTEMS
             .into_iter()
             .map(|system| {
-                candidates_for(system, &orthography).map(|rows| {
-                    (
-                        system,
-                        outcome(rows.into_iter().filter(|row| row.reading_matches(&pinyin))),
-                    )
+                candidate_ranges(system, &orthography).and_then(|(selected, primary, secondary)| {
+                    matching_rows(selected, primary, secondary, Some(&pinyin))
+                        .map(|rows| (system, outcome(rows)))
                 })
             })
             .collect()
@@ -222,7 +287,12 @@ impl HskCatalog {
         let orthography = normalized_orthography(orthography)?;
         SYSTEMS
             .into_iter()
-            .map(|system| candidates_for(system, &orthography).map(|rows| (system, outcome(rows))))
+            .map(|system| {
+                candidate_ranges(system, &orthography).and_then(|(selected, primary, secondary)| {
+                    matching_rows(selected, primary, secondary, None)
+                        .map(|rows| (system, outcome(rows)))
+                })
+            })
             .collect()
     }
 

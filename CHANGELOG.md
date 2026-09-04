@@ -28,6 +28,10 @@ project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   values.
 - Static generated indexes replace per-instance bincode deserialization and
   `HashMap` construction.
+- Runtime and benchmark dependencies were refreshed to
+  `unicode-normalization` 0.1.25 and Criterion 0.7.0 (Rust 1.85 compatible).
+- Extraction and verification tooling moved to the standalone `hsk_tooling`
+  repository; the published crate now has an explicit Rust-only file list.
 
 ### Removed
 

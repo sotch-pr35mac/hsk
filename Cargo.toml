@@ -10,17 +10,31 @@ categories = ["text-processing"]
 license = "MIT"
 edition = "2024"
 rust-version = "1.85"
+include = [
+    "src/**",
+    "build.rs",
+    "data/hsk-sources/canonical/*.csv",
+    "data/hsk-sources/enrichment/hsk2015-unige.csv",
+    "data/hsk-sources/PROVENANCE.md",
+    "tests/**",
+    "benches/**",
+    "LICENSE",
+    "README.md",
+    "CHANGELOG.md",
+    "MIGRATION.md",
+    "docs/testing.md",
+]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-unicode-normalization = "0.1.24"
+unicode-normalization = "0.1.25"
 
 [build-dependencies]
-unicode-normalization = "0.1.24"
+unicode-normalization = "0.1.25"
 
 [dev-dependencies]
-criterion = "0.5.1"
+criterion = { version = "0.7.0", default-features = false, features = ["cargo_bench_support"] }
 
 [[bench]]
 name = "lookup"
