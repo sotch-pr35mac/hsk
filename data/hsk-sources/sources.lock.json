@@ -1,0 +1,40 @@
+{
+  "notes": [
+    "All three artifacts were supplied through transport mirrors because the official hosts were unreachable from the extraction environment on 2026-09-04.",
+    "The artifact hashes must be compared with bytes downloaded directly from each manifest document_url before release.",
+    "The HSK examination PDF hash was independently identical across two transport mirrors, but that does not replace official-CDN byte comparison."
+  ],
+  "schema_version": 1,
+  "sources": [
+    {
+      "artifact_filename": "hsk-2015.xlsx",
+      "authority_status": "pending-official-byte-comparison",
+      "document_url": "https://admin.chinesetest.cn/userfiles/file/HSK/HSK-2015.xlsx",
+      "retrieval_date": "2026-09-04",
+      "retrieval_method": "operator-supplied transport copy of the exact official workbook",
+      "sha256": "7e3c8cac7f8c2be9c0f8b48ed155db234d065b1d874bb98bdc8b845e7a70c76c",
+      "size_bytes": 90619,
+      "source_id": "hsk2015"
+    },
+    {
+      "artifact_filename": "gf0025-2021.pdf",
+      "authority_status": "pending-official-byte-comparison",
+      "document_url": "https://www.moe.gov.cn/jyb_xwfb/gzdt_gzdt/s5987/202103/W020210329527301787356.pdf",
+      "retrieval_date": "2026-09-04",
+      "retrieval_method": "operator-supplied transport copy of the official 260-page scan",
+      "sha256": "e451fdf0899d9267bbd122db66e7e75bdd2851ad1e6732e47b6e960290d73a63",
+      "size_bytes": 51104405,
+      "source_id": "proficiency2021"
+    },
+    {
+      "artifact_filename": "hsk3-syllabus-1219.pdf",
+      "authority_status": "pending-official-byte-comparison; identical across two independent transport mirrors",
+      "document_url": "https://hsk.cn-bj.ufileos.com/3.0/%E6%96%B0%E7%89%88HSK%E8%80%83%E8%AF%95%E5%A4%A7%E7%BA%B21219.pdf",
+      "retrieval_date": "2026-09-04",
+      "retrieval_method": "operator-supplied transport copy; hash independently confirmed from a second mirror",
+      "sha256": "ec74ce0439e837bbb15154be13e747ae798903b2fd3a331629df6c3b45504941",
+      "size_bytes": 4636209,
+      "source_id": "hsk_exam2025"
+    }
+  ]
+}

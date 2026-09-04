@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "sources": [
+    {
+      "artifact_filename": "hsk-2015.xlsx",
+      "document_url": "https://admin.chinesetest.cn/userfiles/file/HSK/HSK-2015.xlsx",
+      "retrieval_date": "YYYY-MM-DD",
+      "sha256": "REPLACE_WITH_64_LOWERCASE_HEX_DIGITS",
+      "size_bytes": 0,
+      "source_id": "hsk2015"
+    },
+    {
+      "artifact_filename": "gf0025-2021.pdf",
+      "document_url": "https://www.moe.gov.cn/jyb_xwfb/gzdt_gzdt/s5987/202103/W020210329527301787356.pdf",
+      "retrieval_date": "YYYY-MM-DD",
+      "sha256": "REPLACE_WITH_64_LOWERCASE_HEX_DIGITS",
+      "size_bytes": 0,
+      "source_id": "proficiency2021"
+    },
+    {
+      "artifact_filename": "hsk3-syllabus-1219.pdf",
+      "document_url": "https://hsk.cn-bj.ufileos.com/3.0/%E6%96%B0%E7%89%88HSK%E8%80%83%E8%AF%95%E5%A4%A7%E7%BA%B21219.pdf",
+      "retrieval_date": "YYYY-MM-DD",
+      "sha256": "REPLACE_WITH_64_LOWERCASE_HEX_DIGITS",
+      "size_bytes": 0,
+      "source_id": "hsk_exam2025"
+    }
+  ]
+}

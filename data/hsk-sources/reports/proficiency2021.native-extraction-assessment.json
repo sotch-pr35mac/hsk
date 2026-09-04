@@ -1,0 +1,22 @@
+{
+  "artifact_sha256": "e451fdf0899d9267bbd122db66e7e75bdd2851ad1e6732e47b6e960290d73a63",
+  "assessment": "Native text extraction demonstrably fails; OCR must be isolated to the vocabulary appendix after its exact page range is established.",
+  "document_pages": 260,
+  "engine": "PyMuPDF get_text(text, sort=True)",
+  "engine_version": "1.26.4",
+  "han_characters": 12,
+  "nonblank_text_pages": [
+    2,
+    4,
+    6
+  ],
+  "notes": [
+    "Each nonblank page exposes only the four-character access watermark 仅供查阅.",
+    "All other pages expose no embedded text.",
+    "No OCR language model was available in the extraction environment, so no canonical GF0025-2021 rows are claimed.",
+    "Do not substitute a third-party transcription while this source-derived extraction is incomplete."
+  ],
+  "replacement_characters": 0,
+  "source_id": "proficiency2021",
+  "total_extracted_characters": 12
+}

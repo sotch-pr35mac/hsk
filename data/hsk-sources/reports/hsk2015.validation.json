@@ -1,0 +1,28 @@
+{
+  "canonical_sha256": "0ed70735d9ae28bbf3473c6c61ecc377f8dd0574b095a70f706d7646e570c361",
+  "corrections_applied": [],
+  "duplicate_lexical_rows": [],
+  "errors": [],
+  "expanded_level_assignment_counts": {
+    "1": 150,
+    "2": 150,
+    "3": 300,
+    "4": 600,
+    "5": 1300,
+    "6": 2500
+  },
+  "expanded_level_assignments_total": 5000,
+  "level_counts": {
+    "1": 150,
+    "2": 150,
+    "3": 300,
+    "4": 600,
+    "5": 1300,
+    "6": 2500
+  },
+  "parser_profile_sha256": "c3f0485e377132b1d4a2ca29965585590532f755500e6fb12eaa82086a381632",
+  "raw_sha256": "d424becfeab0f699817ee20bb363298039d90659c41fe78e59303dfe87bc7b24",
+  "rejected_candidate_rows": 0,
+  "source_id": "hsk2015",
+  "source_rows_total": 5000
+}

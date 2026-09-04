@@ -1,0 +1,14 @@
+{
+  "input_kind": "hsk-table-rows",
+  "notes": [
+    "Reviewed against the 406-page 1219 syllabus PDF fingerprinted in sources.lock.json.",
+    "Vocabulary occupies PDF pages 80-354 inclusive, exactly 40 numbered rows per page and sequences 1-11000.",
+    "Rows are reconstructed by fixed table geometry from native spans; spans at 20pt or larger are diagonal 汉考国际 watermarks and are retained in the PDF but excluded from table cells.",
+    "Parenthetical level annotations are retained in level_raw and expanded into additional_levels. Source-row and classification-assignment counts remain separate.",
+    "A trailing 1/2 on selected headwords is retained in headword_raw and sense_label while simplified contains the lexical surface form."
+  ],
+  "reviewed": true,
+  "schema_version": 1,
+  "sense_suffix_pattern": "^(?P<headword>.+?)(?P<sense>[1-9])$",
+  "source_id": "hsk_exam2025"
+}

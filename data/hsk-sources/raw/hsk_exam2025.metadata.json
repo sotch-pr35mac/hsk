@@ -1,0 +1,9 @@
+{
+  "artifact_sha256": "ec74ce0439e837bbb15154be13e747ae798903b2fd3a331629df6c3b45504941",
+  "engine": "pymupdf-native-table",
+  "engine_version": "1.26.4",
+  "output_sha256": "1b81b78f294c4bb7563b6dc1970085d2988dfb680dfb28fd05eebbbc2a11e8a6",
+  "page_range": "80-354",
+  "rows": 11000,
+  "source_id": "hsk_exam2025"
+}

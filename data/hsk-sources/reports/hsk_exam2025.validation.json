@@ -1,0 +1,108 @@
+{
+  "canonical_sha256": "2325a24beef63a525661554ae36bdc7c7ed4a5123958c9d1bdedde75e4f5932e",
+  "corrections_applied": [],
+  "duplicate_lexical_rows": [
+    [
+      "制服",
+      "",
+      "zhìfú",
+      "7-9",
+      2
+    ],
+    [
+      "局",
+      "",
+      "jú",
+      "6",
+      2
+    ],
+    [
+      "批",
+      "",
+      "pī",
+      "5",
+      2
+    ],
+    [
+      "料",
+      "",
+      "liào",
+      "6",
+      2
+    ],
+    [
+      "生",
+      "",
+      "shēng",
+      "4",
+      2
+    ],
+    [
+      "码",
+      "",
+      "mǎ",
+      "7-9",
+      2
+    ],
+    [
+      "称",
+      "",
+      "chēng",
+      "5",
+      2
+    ],
+    [
+      "粉丝",
+      "",
+      "fěnsī",
+      "7-9",
+      2
+    ],
+    [
+      "自负",
+      "",
+      "zìfù",
+      "7-9",
+      2
+    ],
+    [
+      "花",
+      "",
+      "huā",
+      "2",
+      2
+    ],
+    [
+      "麻",
+      "",
+      "má",
+      "7-9",
+      2
+    ]
+  ],
+  "errors": [],
+  "expanded_level_assignment_counts": {
+    "1": 300,
+    "2": 204,
+    "3": 507,
+    "4": 1019,
+    "5": 1638,
+    "6": 1815,
+    "7-9": 5622
+  },
+  "expanded_level_assignments_total": 11105,
+  "level_counts": {
+    "1": 300,
+    "2": 200,
+    "3": 500,
+    "4": 1000,
+    "5": 1600,
+    "6": 1800,
+    "7-9": 5600
+  },
+  "parser_profile_sha256": "3e7a9b5ea6c77d8bebc2285cb8026acd42f90cc5ffaa857fe43823bb9b45339c",
+  "raw_sha256": "1b81b78f294c4bb7563b6dc1970085d2988dfb680dfb28fd05eebbbc2a11e8a6",
+  "rejected_candidate_rows": 0,
+  "source_id": "hsk_exam2025",
+  "source_rows_total": 11000
+}
