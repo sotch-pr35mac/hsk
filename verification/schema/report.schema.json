@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/sotch-pr35mac/hsk/verification/schema/report.schema.json",
+  "title": "HSK independent verification report",
+  "type": "object",
+  "required": ["schema_version", "generated_by", "authoritative", "verification", "policy", "summary", "present_in_both", "authoritative_only", "verification_only", "pinyin_disagreements", "level_disagreements", "duplicate_disagreements", "headword_only_candidates", "parse_issues"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "generated_by": {"type": "string"},
+    "authoritative": {"type": "object"},
+    "verification": {"type": "object"},
+    "policy": {
+      "type": "object",
+      "required": ["lexical_identity", "definitions_used_for_identity", "verification_can_override_authoritative", "missing_pinyin_is_exact_match"],
+      "properties": {
+        "lexical_identity": {"const": "intersecting_headword_form+normalized_pinyin"},
+        "definitions_used_for_identity": {"const": false},
+        "verification_can_override_authoritative": {"const": false},
+        "missing_pinyin_is_exact_match": {"const": false}
+      },
+      "additionalProperties": false
+    },
+    "summary": {"type": "object", "additionalProperties": {"type": "integer", "minimum": 0}},
+    "present_in_both": {"type": "array"},
+    "authoritative_only": {"type": "array"},
+    "verification_only": {"type": "array"},
+    "pinyin_disagreements": {"type": "array"},
+    "level_disagreements": {"type": "array"},
+    "duplicate_disagreements": {"type": "array"},
+    "headword_only_candidates": {"type": "array"},
+    "parse_issues": {"type": "array"}
+  },
+  "additionalProperties": false
+}

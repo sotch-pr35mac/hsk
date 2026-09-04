@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/sotch-pr35mac/hsk/verification/schema/record.schema.json",
+  "title": "Canonical input record for independent verification",
+  "description": "Each JSONL line must satisfy this schema. Definitions are intentionally absent because they cannot establish lexical identity.",
+  "type": "object",
+  "required": ["record_id", "level", "source_locator"],
+  "anyOf": [
+    {"required": ["simplified"]},
+    {"required": ["traditional"]}
+  ],
+  "properties": {
+    "record_id": {"type": "string", "minLength": 1},
+    "level": {"enum": ["1", "2", "3", "4", "5", "6", "7-9"]},
+    "simplified": {"type": ["string", "null"]},
+    "traditional": {"type": ["string", "null"]},
+    "pinyin": {"type": ["string", "null"]},
+    "pinyin_normalized": {"type": ["string", "null"]},
+    "part_of_speech": {"type": ["string", "null"]},
+    "source_locator": {"type": "string", "minLength": 1}
+  },
+  "additionalProperties": true
+}

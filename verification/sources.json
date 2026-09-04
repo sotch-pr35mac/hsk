@@ -1,0 +1,267 @@
+{
+  "$schema": "schema/source-manifest.schema.json",
+  "schema_version": 1,
+  "retrieval_date": "2026-09-04",
+  "policy": {
+    "canonical": false,
+    "purpose": [
+      "verify extraction coverage",
+      "compare level counts",
+      "detect probable extraction errors",
+      "identify records requiring review"
+    ],
+    "prohibited_uses": [
+      "overwriting authoritative records",
+      "using English definitions as lexical identity",
+      "silently resolving discrepancies"
+    ]
+  },
+  "sources": [
+    {
+      "id": "unige-hsk-2015",
+      "name": "University of Geneva HSK vocabulary transcription",
+      "dataset": "hsk_2015_exam",
+      "provider": "University of Geneva, Confucius Institute",
+      "repository_url": null,
+      "landing_url": "https://www.unige.ch/ic/hsk/vocabulaire",
+      "claimed_edition": "Hanban 新汉语水平考试大纲 1-6级, People's Education Press, 2015",
+      "last_update": "unknown (landing page retrieved 2026-09-04)",
+      "revision": {
+        "type": "http_artifact_sha256",
+        "value": "cdbe9588241fda5931ae2137e79326addc370bd2bbe90bd73a3b7970c6f954c4"
+      },
+      "license": {
+        "spdx": null,
+        "name": "No explicit reuse license located",
+        "url": "https://www.unige.ch/ic/hsk/vocabulaire",
+        "redistribution": "unknown; do not commit the PDF without permission"
+      },
+      "derivation": {
+        "method": "University-maintained annotated transcription",
+        "upstream_authoritative_url": "https://admin.chinesetest.cn/godownload.do",
+        "same_authoritative_source": true,
+        "independence_class": "separately maintained same-edition transcription",
+        "limitations": "Contains annotations and implicit/recomposed vocabulary; it is not assumed to be row-for-row equivalent to the CTI workbook. No direct adapter is supplied for its table-heavy PDF."
+      },
+      "expected": {
+        "source_records": null,
+        "classification_assignments": null,
+        "counts_by_level": null
+      },
+      "artifacts": [
+        {
+          "url": "https://www.unige.ch/ic/application/files/7915/4272/2792/HSK_VOCABULARY_.pdf",
+          "repository_path": null,
+          "sha256": "cdbe9588241fda5931ae2137e79326addc370bd2bbe90bd73a3b7970c6f954c4",
+          "format": "pdf",
+          "adapter": null
+        }
+      ]
+    },
+    {
+      "id": "shawkynasr-gf0025-2021",
+      "name": "HSK official Query System vocabulary export",
+      "dataset": "proficiency_standard_2021",
+      "provider": "shawkynasr",
+      "repository_url": "https://github.com/shawkynasr/HSK-official-Query-System",
+      "landing_url": "https://github.com/shawkynasr/HSK-official-Query-System",
+      "claimed_edition": "GF0025-2021 / New HSK Levels 2021",
+      "last_update": "2026-08-21T12:47:59+03:00",
+      "revision": {
+        "type": "git_commit",
+        "value": "11694d519638a4f9e50d5fd7dc6b87d140d8752e"
+      },
+      "license": {
+        "spdx": "MIT",
+        "name": "MIT License",
+        "url": "https://github.com/shawkynasr/HSK-official-Query-System/blob/11694d519638a4f9e50d5fd7dc6b87d140d8752e/LICENSE",
+        "redistribution": "permitted with copyright and license notice"
+      },
+      "derivation": {
+        "method": "Export/transcription of the former official ChineseTest query system; README says typos were corrected",
+        "upstream_authoritative_url": "https://www.moe.gov.cn/jyb_sjzl/ziliao/A19/202111/t20211118_580755.html",
+        "same_authoritative_source": true,
+        "independence_class": "separately maintained official-query export",
+        "limitations": "Maintenance corrections mean differences must be adjudicated against the MOE document, not accepted automatically."
+      },
+      "expected": {
+        "source_records": 11092,
+        "classification_assignments": 11092,
+        "counts_by_level": {"1": 500, "2": 772, "3": 973, "4": 1000, "5": 1071, "6": 1140, "7-9": 5636}
+      },
+      "artifacts": [
+        {
+          "url": "https://raw.githubusercontent.com/shawkynasr/HSK-official-Query-System/11694d519638a4f9e50d5fd7dc6b87d140d8752e/%E8%AF%8D%E6%B1%87.csv",
+          "repository_path": "词汇.csv",
+          "sha256": "f79d832ffe2a4015d5a24d6aa9c6f734e90053a02456fa0fc37eeefb65c630cc",
+          "format": "csv",
+          "adapter": "shawkynasr-2021-csv"
+        }
+      ]
+    },
+    {
+      "id": "krmanik-gf0025-2021",
+      "name": "krmanik HSK 2021 OCR word lists",
+      "dataset": "proficiency_standard_2021",
+      "provider": "krmanik",
+      "repository_url": "https://github.com/krmanik/HSK-3.0",
+      "landing_url": "https://github.com/krmanik/HSK-3.0/tree/182692ce5a11bc30bdc771835d2f0f27491c25de/New%20HSK%20%282021%29/HSK%20List",
+      "claimed_edition": "GF0025-2021 vocabulary list",
+      "last_update": "2026-06-14T17:26:05+08:00",
+      "revision": {
+        "type": "git_commit",
+        "value": "182692ce5a11bc30bdc771835d2f0f27491c25de"
+      },
+      "license": {
+        "spdx": "CC-BY-SA-4.0",
+        "name": "CC BY-SA 4.0 for HSK word lists",
+        "url": "https://github.com/krmanik/HSK-3.0/blob/182692ce5a11bc30bdc771835d2f0f27491c25de/License.md",
+        "redistribution": "permitted subject to attribution and share-alike; references only are committed here"
+      },
+      "derivation": {
+        "method": "OCR of the MOE PDF, published as one headword-only file per level",
+        "upstream_authoritative_url": "https://www.moe.gov.cn/jyb_xwfb/gzdt_gzdt/s5987/202103/W020210329527301787356.pdf",
+        "same_authoritative_source": true,
+        "independence_class": "independent OCR of same document",
+        "limitations": "Contains 11,091 headword rows rather than 11,092 and no pinyin. It can establish headword coverage candidates, never strict lexical matches."
+      },
+      "expected": {
+        "source_records": 11091,
+        "classification_assignments": 11091,
+        "counts_by_level": {"1": 500, "2": 771, "3": 973, "4": 1000, "5": 1071, "6": 1140, "7-9": 5636}
+      },
+      "artifacts": [
+        {"url": "https://raw.githubusercontent.com/krmanik/HSK-3.0/182692ce5a11bc30bdc771835d2f0f27491c25de/New%20HSK%20%282021%29/HSK%20List/HSK%201.txt", "repository_path": "New HSK (2021)/HSK List/HSK 1.txt", "sha256": "3081701aee20cec7b8d8c8f3f5041b667d5ed37810f1f750a708eeafbaa572a1", "format": "text-lines", "adapter": "krmanik-headword-directory"},
+        {"url": "https://raw.githubusercontent.com/krmanik/HSK-3.0/182692ce5a11bc30bdc771835d2f0f27491c25de/New%20HSK%20%282021%29/HSK%20List/HSK%202.txt", "repository_path": "New HSK (2021)/HSK List/HSK 2.txt", "sha256": "1e9150bd38b18d5ec602d7d9d898c16bd28bfba6a3d4c358b04a3238364a44c7", "format": "text-lines", "adapter": "krmanik-headword-directory"},
+        {"url": "https://raw.githubusercontent.com/krmanik/HSK-3.0/182692ce5a11bc30bdc771835d2f0f27491c25de/New%20HSK%20%282021%29/HSK%20List/HSK%203.txt", "repository_path": "New HSK (2021)/HSK List/HSK 3.txt", "sha256": "9ccd47f23f8f84d73c84608edfce75d81dee71480244d8929e102ef74e960c8a", "format": "text-lines", "adapter": "krmanik-headword-directory"},
+        {"url": "https://raw.githubusercontent.com/krmanik/HSK-3.0/182692ce5a11bc30bdc771835d2f0f27491c25de/New%20HSK%20%282021%29/HSK%20List/HSK%204.txt", "repository_path": "New HSK (2021)/HSK List/HSK 4.txt", "sha256": "a1f458ff843a6a39541901046c1508f2ca1443626fc9a3f3cc3c8157672a4bed", "format": "text-lines", "adapter": "krmanik-headword-directory"},
+        {"url": "https://raw.githubusercontent.com/krmanik/HSK-3.0/182692ce5a11bc30bdc771835d2f0f27491c25de/New%20HSK%20%282021%29/HSK%20List/HSK%205.txt", "repository_path": "New HSK (2021)/HSK List/HSK 5.txt", "sha256": "051d6e691add4a86b8bf91e42490ddb3b775e74bfd15463845cb10b1d6610dc1", "format": "text-lines", "adapter": "krmanik-headword-directory"},
+        {"url": "https://raw.githubusercontent.com/krmanik/HSK-3.0/182692ce5a11bc30bdc771835d2f0f27491c25de/New%20HSK%20%282021%29/HSK%20List/HSK%206.txt", "repository_path": "New HSK (2021)/HSK List/HSK 6.txt", "sha256": "1a81273a1ae95f41f8a39fcf8fdd1d59ca9cdf7e810894be6dce195670a8b9b8", "format": "text-lines", "adapter": "krmanik-headword-directory"},
+        {"url": "https://raw.githubusercontent.com/krmanik/HSK-3.0/182692ce5a11bc30bdc771835d2f0f27491c25de/New%20HSK%20%282021%29/HSK%20List/HSK%207-9.txt", "repository_path": "New HSK (2021)/HSK List/HSK 7-9.txt", "sha256": "6d344f9ce169e677a49d1bbb6b8c2c34590863347d2156c85efad9f28f6dc84e", "format": "text-lines", "adapter": "krmanik-headword-directory"}
+      ]
+    },
+    {
+      "id": "punpuf-hsk-syllabus-2025",
+      "name": "Punpuf HSK syllabus vocabulary parser output",
+      "dataset": "hsk_exam_syllabus_2025",
+      "provider": "Punpuf",
+      "repository_url": "https://github.com/Punpuf/hsk-syllabus-vocabulary-parser",
+      "landing_url": "https://github.com/Punpuf/hsk-syllabus-vocabulary-parser",
+      "claimed_edition": "HSK 3.0 examination syllabus, published 2025-11 / effective 2026-07",
+      "last_update": "2026-02-12T15:42:50+08:00",
+      "revision": {
+        "type": "git_commit",
+        "value": "2adf7c9885a17077966922b89de7ce655d7d82a0"
+      },
+      "license": {
+        "spdx": "MIT",
+        "name": "MIT License",
+        "url": "https://github.com/Punpuf/hsk-syllabus-vocabulary-parser/blob/2adf7c9885a17077966922b89de7ce655d7d82a0/LICENSE",
+        "redistribution": "permitted with copyright and license notice; enriched dataset is referenced, not vendored"
+      },
+      "derivation": {
+        "method": "Programmatic PDF extraction with explicit multi-level row expansion and CC-CEDICT enrichment",
+        "upstream_authoritative_url": "https://hsk.cn-bj.ufileos.com/3.0/%E6%96%B0%E7%89%88HSK%E8%80%83%E8%AF%95%E5%A4%A7%E7%BA%B2%EF%BC%88%E8%AF%8D%E6%B1%87%E3%80%81%E6%B1%89%E5%AD%97%E3%80%81%E8%AF%AD%E6%B3%95%EF%BC%89.pdf",
+        "same_authoritative_source": true,
+        "independence_class": "independent programmatic extraction of same PDF",
+        "limitations": "Traditional forms and definitions are CC-CEDICT enrichment. The adapter ignores both for identity and uses only syllabus word, pinyin, POS, index, and level."
+      },
+      "expected": {
+        "source_records": 11000,
+        "classification_assignments": 11105,
+        "counts_by_level": {"1": 300, "2": 204, "3": 507, "4": 1019, "5": 1638, "6": 1815, "7-9": 5622}
+      },
+      "artifacts": [
+        {
+          "url": "https://raw.githubusercontent.com/Punpuf/hsk-syllabus-vocabulary-parser/2adf7c9885a17077966922b89de7ce655d7d82a0/hsk_word_list.tsv",
+          "repository_path": "hsk_word_list.tsv",
+          "sha256": "46f8139f651cf4895dcdb9b1f517795778257716433bdcc5127460fd00d0f9ee",
+          "format": "tsv",
+          "adapter": "punpuf-2025-tsv"
+        }
+      ]
+    },
+    {
+      "id": "profesorm-hsk-syllabus-2025",
+      "name": "profesorm HSK 3.0 2026 syllabus API dataset",
+      "dataset": "hsk_exam_syllabus_2025",
+      "provider": "profesorm",
+      "repository_url": "https://github.com/profesorm/hsk30",
+      "landing_url": "https://github.com/profesorm/hsk30",
+      "claimed_edition": "HSK 3.0 2026 examination syllabus dataset",
+      "last_update": "2026-03-09T08:21:45+03:00",
+      "revision": {
+        "type": "git_commit",
+        "value": "f3163ca6edff5d6b1e81afb1cd716bb78f5a958a"
+      },
+      "license": {
+        "spdx": "CC-BY-4.0",
+        "name": "Creative Commons Attribution 4.0 International",
+        "url": "https://github.com/profesorm/hsk30/blob/f3163ca6edff5d6b1e81afb1cd716bb78f5a958a/LICENCE",
+        "redistribution": "permitted with attribution; dataset is referenced, not vendored"
+      },
+      "derivation": {
+        "method": "Structured export described as fetched from the official HSK API",
+        "upstream_authoritative_url": "https://www.chinesetest.cn/Development?lang=cn",
+        "same_authoritative_source": false,
+        "independence_class": "official-provider API representation of same edition",
+        "limitations": "The repository does not pin the API response URL/time in each row. Use as an independent structural check, not as documentary authority."
+      },
+      "expected": {
+        "source_records": 11000,
+        "classification_assignments": 11105,
+        "counts_by_level": {"1": 300, "2": 204, "3": 507, "4": 1019, "5": 1638, "6": 1815, "7-9": 5622}
+      },
+      "artifacts": [
+        {
+          "url": "https://raw.githubusercontent.com/profesorm/hsk30/f3163ca6edff5d6b1e81afb1cd716bb78f5a958a/data/hsk_vocabulary.csv",
+          "repository_path": "data/hsk_vocabulary.csv",
+          "sha256": "e17971fd73680608a7a256a9b4a6c3541858df3411d8ad47efddd46889fe6c7b",
+          "format": "csv",
+          "adapter": "profesorm-2025-csv"
+        }
+      ]
+    },
+    {
+      "id": "krmanik-hsk-syllabus-2025",
+      "name": "krmanik HSK 2025 examination word lists",
+      "dataset": "hsk_exam_syllabus_2025",
+      "provider": "krmanik",
+      "repository_url": "https://github.com/krmanik/HSK-3.0",
+      "landing_url": "https://github.com/krmanik/HSK-3.0/tree/182692ce5a11bc30bdc771835d2f0f27491c25de/New%20HSK%20%282025%29/HSK%20Words",
+      "claimed_edition": "New HSK examination syllabus, 2025-11",
+      "last_update": "2026-06-14T17:26:05+08:00",
+      "revision": {
+        "type": "git_commit",
+        "value": "182692ce5a11bc30bdc771835d2f0f27491c25de"
+      },
+      "license": {
+        "spdx": "CC-BY-SA-4.0",
+        "name": "CC BY-SA 4.0 for HSK word lists",
+        "url": "https://github.com/krmanik/HSK-3.0/blob/182692ce5a11bc30bdc771835d2f0f27491c25de/License.md",
+        "redistribution": "permitted subject to attribution and share-alike; references only are committed here"
+      },
+      "derivation": {
+        "method": "Headword lists transcribed from the linked CTI vocabulary/characters/grammar syllabus PDF; exact extraction method is undocumented",
+        "upstream_authoritative_url": "https://hsk.cn-bj.ufileos.com/3.0/%E6%96%B0%E7%89%88HSK%E8%80%83%E8%AF%95%E5%A4%A7%E7%BA%B2%EF%BC%88%E8%AF%8D%E6%B1%87%E3%80%81%E6%B1%89%E5%AD%97%E3%80%81%E8%AF%AD%E6%B3%95%EF%BC%89.pdf",
+        "same_authoritative_source": true,
+        "independence_class": "separately maintained same-document transcription",
+        "limitations": "No pinyin is included, so rows are headword-only review candidates and never strict lexical matches."
+      },
+      "expected": {
+        "source_records": null,
+        "classification_assignments": 11105,
+        "counts_by_level": {"1": 300, "2": 204, "3": 507, "4": 1019, "5": 1638, "6": 1815, "7-9": 5622}
+      },
+      "artifacts": [
+        {"url": "https://raw.githubusercontent.com/krmanik/HSK-3.0/182692ce5a11bc30bdc771835d2f0f27491c25de/New%20HSK%20%282025%29/HSK%20Words/HSK_Level_1_words.txt", "repository_path": "New HSK (2025)/HSK Words/HSK_Level_1_words.txt", "sha256": "e87632c25ce5bbe467cfceaebfc7cf5cd128f0e068a03bce74d30f700b240efd", "format": "text-lines", "adapter": "krmanik-headword-directory"},
+        {"url": "https://raw.githubusercontent.com/krmanik/HSK-3.0/182692ce5a11bc30bdc771835d2f0f27491c25de/New%20HSK%20%282025%29/HSK%20Words/HSK_Level_2_words.txt", "repository_path": "New HSK (2025)/HSK Words/HSK_Level_2_words.txt", "sha256": "541f5cc1398655746b762188d846dd0da91d7ebd265d61260dc5a0f51a06f180", "format": "text-lines", "adapter": "krmanik-headword-directory"},
+        {"url": "https://raw.githubusercontent.com/krmanik/HSK-3.0/182692ce5a11bc30bdc771835d2f0f27491c25de/New%20HSK%20%282025%29/HSK%20Words/HSK_Level_3_words.txt", "repository_path": "New HSK (2025)/HSK Words/HSK_Level_3_words.txt", "sha256": "0b4fb242100d34f15a86aab27b6febe9cee4be87f0875f546893b4a2205a60a2", "format": "text-lines", "adapter": "krmanik-headword-directory"},
+        {"url": "https://raw.githubusercontent.com/krmanik/HSK-3.0/182692ce5a11bc30bdc771835d2f0f27491c25de/New%20HSK%20%282025%29/HSK%20Words/HSK_Level_4_words.txt", "repository_path": "New HSK (2025)/HSK Words/HSK_Level_4_words.txt", "sha256": "a5a156b2531c5c9c8caf1d1c58d2df2bd268a3159e41dc9c1e8718089df38ffe", "format": "text-lines", "adapter": "krmanik-headword-directory"},
+        {"url": "https://raw.githubusercontent.com/krmanik/HSK-3.0/182692ce5a11bc30bdc771835d2f0f27491c25de/New%20HSK%20%282025%29/HSK%20Words/HSK_Level_5_words.txt", "repository_path": "New HSK (2025)/HSK Words/HSK_Level_5_words.txt", "sha256": "9d8d0f499ba2b6d1bedcc47897f0df7f16dd9aaaf1398e57955f69b12a12a914", "format": "text-lines", "adapter": "krmanik-headword-directory"},
+        {"url": "https://raw.githubusercontent.com/krmanik/HSK-3.0/182692ce5a11bc30bdc771835d2f0f27491c25de/New%20HSK%20%282025%29/HSK%20Words/HSK_Level_6_words.txt", "repository_path": "New HSK (2025)/HSK Words/HSK_Level_6_words.txt", "sha256": "e8b72a3730dd5a00812c71ed0e4f1c0a0c3f3f0b13e26277762d3a1d4f5332e0", "format": "text-lines", "adapter": "krmanik-headword-directory"},
+        {"url": "https://raw.githubusercontent.com/krmanik/HSK-3.0/182692ce5a11bc30bdc771835d2f0f27491c25de/New%20HSK%20%282025%29/HSK%20Words/HSK_Level_7-9_words.txt", "repository_path": "New HSK (2025)/HSK Words/HSK_Level_7-9_words.txt", "sha256": "abdc5c11b6fc6332909361d94b6c14452e7143e1364a43a8ae3a04ec8606fde1", "format": "text-lines", "adapter": "krmanik-headword-directory"}
+      ]
+    }
+  ]
+}
