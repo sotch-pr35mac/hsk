@@ -152,3 +152,54 @@ fn all_system_lookup_returns_one_result_per_supported_system() {
         ));
     }
 }
+
+fn all_levels(word: &str, pinyin: &str) -> Vec<Option<HskLevel>> {
+    HskCatalog::new()
+        .lookup_all(Orthography::Simplified(word), pinyin)
+        .unwrap()
+        .into_iter()
+        .map(|(_, outcome)| match outcome {
+            LookupOutcome::Unique(found) => Some(found.classification().level()),
+            LookupOutcome::NotFound => None,
+            LookupOutcome::Ambiguous(found) => {
+                panic!("unexpected ambiguity for {word}: {found:?}")
+            }
+        })
+        .collect()
+}
+
+#[test]
+fn all_system_lookup_exposes_stable_and_changed_levels() {
+    assert_eq!(
+        all_levels("是", "shi4"),
+        vec![
+            Some(HskLevel::One),
+            Some(HskLevel::One),
+            Some(HskLevel::One)
+        ]
+    );
+    assert_eq!(
+        all_levels("出租车", "chu1zu1che1"),
+        vec![
+            Some(HskLevel::One),
+            Some(HskLevel::Two),
+            Some(HskLevel::One)
+        ]
+    );
+}
+
+#[test]
+fn all_system_lookup_keeps_system_specific_entries_explicit() {
+    assert_eq!(
+        all_levels("打篮球", "da3lan2qiu2"),
+        vec![Some(HskLevel::Two), None, None]
+    );
+    assert_eq!(
+        all_levels("半年", "ban4nian2"),
+        vec![None, Some(HskLevel::One), None]
+    );
+    assert_eq!(
+        all_levels("没事", "mei2shi4"),
+        vec![None, None, Some(HskLevel::One)]
+    );
+}

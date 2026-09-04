@@ -12,13 +12,19 @@ cargo fmt --check
 cargo clippy --all-targets --all-features -- -D warnings
 cargo check --all-targets --all-features
 cargo test --all-targets --all-features
-cargo xtask data check --offline
+python3 tools/hsk_data.py validate-config
+python3 tools/hsk_data.py validate --source hsk2015 --canonical data/hsk-sources/canonical/hsk2015.csv
+python3 tools/hsk_data.py validate --source proficiency2021 --canonical data/hsk-sources/canonical/proficiency2021.csv
+python3 tools/hsk_data.py validate --source hsk_exam2025 --canonical data/hsk-sources/canonical/hsk_exam2025.csv
+python3 -m unittest discover -s tools -p 'test_*.py' -v
+python3 -m unittest discover -s verification/tests -v
 ```
 
-The data check regenerates tracked canonical data, static Rust indexes, and
-discrepancy reports into a temporary directory and compares them byte-for-byte.
-It must not download sources. Source downloads belong to the separately invoked
-acquisition step and must match the checksums in the source manifest.
+The structural checks are offline and must not download sources. Full
+byte-for-byte regeneration additionally requires the three ignored official
+artifacts and the pinned non-vendored verification inputs described in
+`data/hsk-sources/README.md`. Acquisition is a separate step and every artifact
+must match its recorded SHA-256 before extraction.
 
 ## Required coverage
 

@@ -13,8 +13,8 @@
   "notes": [
     "Each nonblank page exposes only the four-character access watermark 仅供查阅.",
     "All other pages expose no embedded text.",
-    "No OCR language model was available in the extraction environment, so no canonical GF0025-2021 rows are claimed.",
-    "Do not substitute a third-party transcription while this source-derived extraction is incomplete."
+    "OCR was subsequently isolated to vocabulary pages 42-175; positioned observations and per-range metadata are committed under raw/proficiency2021-ocr.",
+    "The canonical validation report distinguishes unique authoritative row matches from unresolved verification candidates."
   ],
   "replacement_characters": 0,
   "source_id": "proficiency2021",

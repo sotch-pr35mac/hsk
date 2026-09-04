@@ -141,6 +141,47 @@
       ]
     },
     {
+      "id": "zispace-gf0025-row-candidates",
+      "name": "zispace GF0025 level-ordered vocabulary transcription",
+      "dataset": "proficiency_standard_2021",
+      "provider": "zispace",
+      "repository_url": "https://github.com/zispace/hanyu-hsk",
+      "landing_url": "https://github.com/zispace/hanyu-hsk/blob/ca0a5662a95ecc8522983d24bfbef5ab5b8cda0a/data/GF%200025-2021/%E5%9B%BD%E9%99%85%E4%B8%AD%E6%96%87%E6%95%99%E8%82%B2%E4%B8%AD%E6%96%87%E6%B0%B4%E5%B9%B3%E7%AD%89%E7%BA%A7%E6%A0%87%E5%87%86-%E8%AF%8D%E6%B1%87%E8%A1%A8.txt",
+      "claimed_edition": "GF0025-2021 vocabulary list",
+      "last_update": "2026-03-20T17:34:50+08:00",
+      "revision": {
+        "type": "git_commit",
+        "value": "ca0a5662a95ecc8522983d24bfbef5ab5b8cda0a"
+      },
+      "license": {
+        "spdx": null,
+        "name": "No explicit repository license located",
+        "url": "https://github.com/zispace/hanyu-hsk/tree/ca0a5662a95ecc8522983d24bfbef5ab5b8cda0a",
+        "redistribution": "not vendored; obtain the pinned revision for local reproduction"
+      },
+      "derivation": {
+        "method": "Level-ordered transcription citing the MOE PDF and shawkynasr export",
+        "upstream_authoritative_url": "https://www.moe.gov.cn/jyb_xwfb/gzdt_gzdt/s5987/202103/W020210329527301787356.pdf",
+        "same_authoritative_source": true,
+        "independence_class": "non-authoritative row-candidate scaffold",
+        "limitations": "Used only to propose cell boundaries to positioned OCR. Rows without a unique authoritative sequence+headword+pinyin match remain explicitly unresolved. No license was located, so the file is referenced and hash-pinned rather than redistributed."
+      },
+      "expected": {
+        "source_records": 11092,
+        "classification_assignments": 11092,
+        "counts_by_level": {"1": 500, "2": 772, "3": 973, "4": 1000, "5": 1071, "6": 1140, "7-9": 5636}
+      },
+      "artifacts": [
+        {
+          "url": "https://raw.githubusercontent.com/zispace/hanyu-hsk/ca0a5662a95ecc8522983d24bfbef5ab5b8cda0a/data/GF%200025-2021/%E5%9B%BD%E9%99%85%E4%B8%AD%E6%96%87%E6%95%99%E8%82%B2%E4%B8%AD%E6%96%87%E6%B0%B4%E5%B9%B3%E7%AD%89%E7%BA%A7%E6%A0%87%E5%87%86-%E8%AF%8D%E6%B1%87%E8%A1%A8.txt",
+          "repository_path": "data/GF 0025-2021/国际中文教育中文水平等级标准-词汇表.txt",
+          "sha256": "d34106d7b96a0c143db248c9fdf838076d33a5a92102139c8c6e612bb09f052f",
+          "format": "tab-separated-text",
+          "adapter": null
+        }
+      ]
+    },
+    {
       "id": "punpuf-hsk-syllabus-2025",
       "name": "Punpuf HSK syllabus vocabulary parser output",
       "dataset": "hsk_exam_syllabus_2025",

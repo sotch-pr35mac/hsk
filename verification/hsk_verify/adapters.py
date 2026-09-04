@@ -50,6 +50,14 @@ def _strip_source_sense_suffix(value: str) -> str:
     return re.sub(r"(?<=[\u3400-\u9fff])[12]$", "", value.strip())
 
 
+def _shawkynasr_headword(value: str) -> str:
+    """Select the same primary printed form used by canonical extraction."""
+
+    primary = value.split("∣", 1)[0].strip()
+    primary = re.sub(r"[（(][^）)]*[）)]", "", primary)
+    return _strip_source_sense_suffix(primary)
+
+
 def _pinyin_key(
     value: str | None, locator: str, issues: list[dict[str, Any]]
 ) -> str | None:
@@ -122,7 +130,7 @@ def load_shawkynasr_2021(path: Path) -> LoadResult:
     for line_number, row in _read_delimited(path, ","):
         locator = f"{path.name}:{line_number}"
         try:
-            headword = normalize_headword(_strip_source_sense_suffix(row["词语"]))
+            headword = normalize_headword(_shawkynasr_headword(row["词语"]))
             pinyin = _shawkynasr_pinyin(row.get("拼音") or "")
             result.records.append(
                 Record(

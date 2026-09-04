@@ -18,7 +18,7 @@ from hsk_verify.manifest import (
 class ManifestTests(unittest.TestCase):
     def test_checked_in_manifest_is_valid_and_has_all_three_datasets(self):
         manifest = load_manifest(VERIFICATION / "sources.json")
-        self.assertEqual(len(manifest["sources"]), 6)
+        self.assertEqual(len(manifest["sources"]), 7)
         self.assertEqual(
             {source["dataset"] for source in manifest["sources"]},
             {

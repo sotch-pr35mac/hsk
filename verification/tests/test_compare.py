@@ -28,12 +28,12 @@ class CompareTests(unittest.TestCase):
         )
 
     def test_reports_all_required_discrepancy_categories(self):
-        self.assertEqual(len(self.report.present_in_both), 4)
-        self.assertEqual(len(self.report.level_disagreements), 2)
-        # Pairwise disagreements are retained for polyphonic headwords so a
-        # reviewer can see every competing reading rather than an arbitrary one.
-        self.assertEqual(len(self.report.pinyin_disagreements), 3)
-        self.assertEqual(len(self.report.authoritative_only), 2)
+        # Exact records are matched one-to-one, even when a source repeats a
+        # polyphonic headword. Duplicate cardinality has its own report section.
+        self.assertEqual(len(self.report.present_in_both), 3)
+        self.assertEqual(len(self.report.level_disagreements), 1)
+        self.assertEqual(len(self.report.pinyin_disagreements), 1)
+        self.assertEqual(len(self.report.authoritative_only), 3)
         self.assertEqual(len(self.report.verification_only), 2)
         self.assertEqual(len(self.report.duplicate_disagreements), 1)
 

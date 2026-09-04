@@ -1,0 +1,1248 @@
+{
+  "classification_source": "hsk2015",
+  "enriched_rows": 4796,
+  "enrichment_document_sha256": "cdbe9588241fda5931ae2137e79326addc370bd2bbe90bd73a3b7970c6f954c4",
+  "enrichment_source": "University of Geneva 2015-syllabus-based annotated vocabulary",
+  "excluded_sections": [
+    "implicit-recombined",
+    "implicit-reduced",
+    "special-cases",
+    "definitions"
+  ],
+  "official_rows": 5000,
+  "summary": {
+    "authoritative_only": 204,
+    "duplicate_disagreements": 0,
+    "level_disagreements": 0,
+    "manual_or_definition_matches": 0,
+    "pinyin_disagreements": 0,
+    "present_in_both": 4796,
+    "verification_only": 0
+  },
+  "unresolved": [
+    {
+      "level": 1,
+      "local_sequence": 62,
+      "matches": [],
+      "simplified": "猫"
+    },
+    {
+      "level": 1,
+      "local_sequence": 92,
+      "matches": [],
+      "simplified": "谁"
+    },
+    {
+      "level": 1,
+      "local_sequence": 110,
+      "matches": [],
+      "simplified": "喂（叹词）"
+    },
+    {
+      "level": 2,
+      "local_sequence": 9,
+      "matches": [],
+      "simplified": "长（形容词）"
+    },
+    {
+      "level": 2,
+      "local_sequence": 19,
+      "matches": [],
+      "simplified": "得（助词）"
+    },
+    {
+      "level": 2,
+      "local_sequence": 20,
+      "matches": [],
+      "simplified": "等（动词）"
+    },
+    {
+      "level": 2,
+      "local_sequence": 35,
+      "matches": [],
+      "simplified": "过（助词）"
+    },
+    {
+      "level": 2,
+      "local_sequence": 36,
+      "matches": [],
+      "simplified": "还（副词）"
+    },
+    {
+      "level": 2,
+      "local_sequence": 72,
+      "matches": [],
+      "simplified": "面条"
+    },
+    {
+      "level": 2,
+      "local_sequence": 99,
+      "matches": [],
+      "simplified": "虽然……但是……"
+    },
+    {
+      "level": 2,
+      "local_sequence": 131,
+      "matches": [],
+      "simplified": "因为……所以……"
+    },
+    {
+      "level": 2,
+      "local_sequence": 145,
+      "matches": [],
+      "simplified": "只（量词）"
+    },
+    {
+      "level": 2,
+      "local_sequence": 146,
+      "matches": [],
+      "simplified": "知道"
+    },
+    {
+      "level": 2,
+      "local_sequence": 147,
+      "matches": [],
+      "simplified": "准备"
+    },
+    {
+      "level": 2,
+      "local_sequence": 148,
+      "matches": [],
+      "simplified": "走"
+    },
+    {
+      "level": 2,
+      "local_sequence": 149,
+      "matches": [],
+      "simplified": "最"
+    },
+    {
+      "level": 2,
+      "local_sequence": 150,
+      "matches": [],
+      "simplified": "左边"
+    },
+    {
+      "level": 3,
+      "local_sequence": 25,
+      "matches": [],
+      "simplified": "不但……而且……"
+    },
+    {
+      "level": 3,
+      "local_sequence": 48,
+      "matches": [],
+      "simplified": "地（助词）"
+    },
+    {
+      "level": 3,
+      "local_sequence": 90,
+      "matches": [],
+      "simplified": "过（动词）"
+    },
+    {
+      "level": 3,
+      "local_sequence": 97,
+      "matches": [],
+      "simplified": "花（名词）"
+    },
+    {
+      "level": 3,
+      "local_sequence": 98,
+      "matches": [],
+      "simplified": "花（动词）"
+    },
+    {
+      "level": 3,
+      "local_sequence": 102,
+      "matches": [],
+      "simplified": "还（动词）"
+    },
+    {
+      "level": 3,
+      "local_sequence": 154,
+      "matches": [],
+      "simplified": "聊天"
+    },
+    {
+      "level": 3,
+      "local_sequence": 279,
+      "matches": [],
+      "simplified": "长（动词）"
+    },
+    {
+      "level": 3,
+      "local_sequence": 281,
+      "matches": [],
+      "simplified": "照顾"
+    },
+    {
+      "level": 3,
+      "local_sequence": 282,
+      "matches": [],
+      "simplified": "照片"
+    },
+    {
+      "level": 3,
+      "local_sequence": 283,
+      "matches": [],
+      "simplified": "照相机"
+    },
+    {
+      "level": 3,
+      "local_sequence": 284,
+      "matches": [],
+      "simplified": "只（副词）"
+    },
+    {
+      "level": 3,
+      "local_sequence": 285,
+      "matches": [],
+      "simplified": "只有……才……"
+    },
+    {
+      "level": 3,
+      "local_sequence": 286,
+      "matches": [],
+      "simplified": "中间"
+    },
+    {
+      "level": 3,
+      "local_sequence": 287,
+      "matches": [],
+      "simplified": "中文"
+    },
+    {
+      "level": 3,
+      "local_sequence": 288,
+      "matches": [],
+      "simplified": "终于"
+    },
+    {
+      "level": 3,
+      "local_sequence": 289,
+      "matches": [],
+      "simplified": "种（量词）"
+    },
+    {
+      "level": 3,
+      "local_sequence": 290,
+      "matches": [],
+      "simplified": "重要"
+    },
+    {
+      "level": 3,
+      "local_sequence": 291,
+      "matches": [],
+      "simplified": "周末"
+    },
+    {
+      "level": 3,
+      "local_sequence": 292,
+      "matches": [],
+      "simplified": "主要"
+    },
+    {
+      "level": 3,
+      "local_sequence": 293,
+      "matches": [],
+      "simplified": "注意"
+    },
+    {
+      "level": 3,
+      "local_sequence": 294,
+      "matches": [],
+      "simplified": "自己"
+    },
+    {
+      "level": 3,
+      "local_sequence": 295,
+      "matches": [],
+      "simplified": "自行车"
+    },
+    {
+      "level": 3,
+      "local_sequence": 296,
+      "matches": [],
+      "simplified": "总是"
+    },
+    {
+      "level": 3,
+      "local_sequence": 297,
+      "matches": [],
+      "simplified": "嘴"
+    },
+    {
+      "level": 3,
+      "local_sequence": 298,
+      "matches": [],
+      "simplified": "最后"
+    },
+    {
+      "level": 3,
+      "local_sequence": 299,
+      "matches": [],
+      "simplified": "最近"
+    },
+    {
+      "level": 3,
+      "local_sequence": 300,
+      "matches": [],
+      "simplified": "作业"
+    },
+    {
+      "level": 4,
+      "local_sequence": 84,
+      "matches": [],
+      "simplified": "得（助动词）"
+    },
+    {
+      "level": 4,
+      "local_sequence": 86,
+      "matches": [],
+      "simplified": "等（助词）"
+    },
+    {
+      "level": 4,
+      "local_sequence": 130,
+      "matches": [],
+      "simplified": "赶"
+    },
+    {
+      "level": 4,
+      "local_sequence": 131,
+      "matches": [],
+      "simplified": "敢"
+    },
+    {
+      "level": 4,
+      "local_sequence": 138,
+      "matches": [],
+      "simplified": "高速公路"
+    },
+    {
+      "level": 4,
+      "local_sequence": 492,
+      "matches": [],
+      "simplified": "呀"
+    },
+    {
+      "level": 4,
+      "local_sequence": 493,
+      "matches": [],
+      "simplified": "牙膏"
+    },
+    {
+      "level": 4,
+      "local_sequence": 494,
+      "matches": [],
+      "simplified": "亚洲"
+    },
+    {
+      "level": 4,
+      "local_sequence": 582,
+      "matches": [],
+      "simplified": "专门"
+    },
+    {
+      "level": 4,
+      "local_sequence": 592,
+      "matches": [],
+      "simplified": "租"
+    },
+    {
+      "level": 4,
+      "local_sequence": 593,
+      "matches": [],
+      "simplified": "最好"
+    },
+    {
+      "level": 4,
+      "local_sequence": 594,
+      "matches": [],
+      "simplified": "尊重"
+    },
+    {
+      "level": 4,
+      "local_sequence": 595,
+      "matches": [],
+      "simplified": "左右"
+    },
+    {
+      "level": 4,
+      "local_sequence": 596,
+      "matches": [],
+      "simplified": "作家"
+    },
+    {
+      "level": 4,
+      "local_sequence": 597,
+      "matches": [],
+      "simplified": "作用"
+    },
+    {
+      "level": 4,
+      "local_sequence": 598,
+      "matches": [],
+      "simplified": "作者"
+    },
+    {
+      "level": 4,
+      "local_sequence": 599,
+      "matches": [],
+      "simplified": "座"
+    },
+    {
+      "level": 4,
+      "local_sequence": 600,
+      "matches": [],
+      "simplified": "座位"
+    },
+    {
+      "level": 5,
+      "local_sequence": 511,
+      "matches": [],
+      "simplified": "尽量"
+    },
+    {
+      "level": 5,
+      "local_sequence": 528,
+      "matches": [],
+      "simplified": "桔子"
+    },
+    {
+      "level": 5,
+      "local_sequence": 661,
+      "matches": [],
+      "simplified": "模特"
+    },
+    {
+      "level": 5,
+      "local_sequence": 858,
+      "matches": [],
+      "simplified": "使劲儿"
+    },
+    {
+      "level": 5,
+      "local_sequence": 909,
+      "matches": [],
+      "simplified": "所"
+    },
+    {
+      "level": 5,
+      "local_sequence": 910,
+      "matches": [],
+      "simplified": "锁"
+    },
+    {
+      "level": 5,
+      "local_sequence": 1054,
+      "matches": [],
+      "simplified": "写作"
+    },
+    {
+      "level": 5,
+      "local_sequence": 1055,
+      "matches": [],
+      "simplified": "血"
+    },
+    {
+      "level": 6,
+      "local_sequence": 766,
+      "matches": [],
+      "simplified": "横"
+    },
+    {
+      "level": 6,
+      "local_sequence": 767,
+      "matches": [],
+      "simplified": "哼"
+    },
+    {
+      "level": 6,
+      "local_sequence": 1282,
+      "matches": [],
+      "simplified": "墨水儿"
+    },
+    {
+      "level": 6,
+      "local_sequence": 1313,
+      "matches": [],
+      "simplified": "纽扣儿"
+    },
+    {
+      "level": 6,
+      "local_sequence": 1885,
+      "matches": [],
+      "simplified": "喂（动词）"
+    },
+    {
+      "level": 6,
+      "local_sequence": 1980,
+      "matches": [],
+      "simplified": "削"
+    },
+    {
+      "level": 6,
+      "local_sequence": 1981,
+      "matches": [],
+      "simplified": "消除"
+    },
+    {
+      "level": 6,
+      "local_sequence": 1982,
+      "matches": [],
+      "simplified": "消毒"
+    },
+    {
+      "level": 6,
+      "local_sequence": 1983,
+      "matches": [],
+      "simplified": "消防"
+    },
+    {
+      "level": 6,
+      "local_sequence": 1984,
+      "matches": [],
+      "simplified": "消耗"
+    },
+    {
+      "level": 6,
+      "local_sequence": 1985,
+      "matches": [],
+      "simplified": "消灭"
+    },
+    {
+      "level": 6,
+      "local_sequence": 1986,
+      "matches": [],
+      "simplified": "销毁"
+    },
+    {
+      "level": 6,
+      "local_sequence": 1987,
+      "matches": [],
+      "simplified": "潇洒"
+    },
+    {
+      "level": 6,
+      "local_sequence": 1988,
+      "matches": [],
+      "simplified": "小心翼翼"
+    },
+    {
+      "level": 6,
+      "local_sequence": 1989,
+      "matches": [],
+      "simplified": "肖像"
+    },
+    {
+      "level": 6,
+      "local_sequence": 1990,
+      "matches": [],
+      "simplified": "效益"
+    },
+    {
+      "level": 6,
+      "local_sequence": 1991,
+      "matches": [],
+      "simplified": "效应"
+    },
+    {
+      "level": 6,
+      "local_sequence": 1992,
+      "matches": [],
+      "simplified": "协会"
+    },
+    {
+      "level": 6,
+      "local_sequence": 1993,
+      "matches": [],
+      "simplified": "协商"
+    },
+    {
+      "level": 6,
+      "local_sequence": 1994,
+      "matches": [],
+      "simplified": "协调"
+    },
+    {
+      "level": 6,
+      "local_sequence": 1995,
+      "matches": [],
+      "simplified": "协议"
+    },
+    {
+      "level": 6,
+      "local_sequence": 1996,
+      "matches": [],
+      "simplified": "协助"
+    },
+    {
+      "level": 6,
+      "local_sequence": 1997,
+      "matches": [],
+      "simplified": "携带"
+    },
+    {
+      "level": 6,
+      "local_sequence": 1998,
+      "matches": [],
+      "simplified": "泄露"
+    },
+    {
+      "level": 6,
+      "local_sequence": 1999,
+      "matches": [],
+      "simplified": "泄气"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2000,
+      "matches": [],
+      "simplified": "屑"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2001,
+      "matches": [],
+      "simplified": "谢绝"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2002,
+      "matches": [],
+      "simplified": "心得"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2003,
+      "matches": [],
+      "simplified": "心甘情愿"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2004,
+      "matches": [],
+      "simplified": "心灵"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2005,
+      "matches": [],
+      "simplified": "心态"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2006,
+      "matches": [],
+      "simplified": "心疼"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2007,
+      "matches": [],
+      "simplified": "心血"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2008,
+      "matches": [],
+      "simplified": "心眼儿"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2009,
+      "matches": [],
+      "simplified": "辛勤"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2010,
+      "matches": [],
+      "simplified": "欣慰"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2011,
+      "matches": [],
+      "simplified": "欣欣向荣"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2012,
+      "matches": [],
+      "simplified": "新陈代谢"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2013,
+      "matches": [],
+      "simplified": "新郎"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2014,
+      "matches": [],
+      "simplified": "新娘"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2015,
+      "matches": [],
+      "simplified": "新颖"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2016,
+      "matches": [],
+      "simplified": "薪水"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2017,
+      "matches": [],
+      "simplified": "信赖"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2018,
+      "matches": [],
+      "simplified": "信念"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2019,
+      "matches": [],
+      "simplified": "信仰"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2020,
+      "matches": [],
+      "simplified": "信誉"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2021,
+      "matches": [],
+      "simplified": "兴隆"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2022,
+      "matches": [],
+      "simplified": "兴旺"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2023,
+      "matches": [],
+      "simplified": "腥"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2024,
+      "matches": [],
+      "simplified": "刑事"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2025,
+      "matches": [],
+      "simplified": "行政"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2026,
+      "matches": [],
+      "simplified": "形态"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2027,
+      "matches": [],
+      "simplified": "兴高采烈"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2028,
+      "matches": [],
+      "simplified": "兴致勃勃"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2029,
+      "matches": [],
+      "simplified": "性感"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2030,
+      "matches": [],
+      "simplified": "性命"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2031,
+      "matches": [],
+      "simplified": "性能"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2032,
+      "matches": [],
+      "simplified": "凶恶"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2033,
+      "matches": [],
+      "simplified": "凶手"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2034,
+      "matches": [],
+      "simplified": "汹涌"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2035,
+      "matches": [],
+      "simplified": "胸怀"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2036,
+      "matches": [],
+      "simplified": "胸膛"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2037,
+      "matches": [],
+      "simplified": "雄厚"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2038,
+      "matches": [],
+      "simplified": "雄伟"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2039,
+      "matches": [],
+      "simplified": "修复"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2040,
+      "matches": [],
+      "simplified": "修建"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2041,
+      "matches": [],
+      "simplified": "修养"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2042,
+      "matches": [],
+      "simplified": "羞耻"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2043,
+      "matches": [],
+      "simplified": "绣"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2044,
+      "matches": [],
+      "simplified": "嗅觉"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2045,
+      "matches": [],
+      "simplified": "须知"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2046,
+      "matches": [],
+      "simplified": "虚假"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2047,
+      "matches": [],
+      "simplified": "虚荣"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2048,
+      "matches": [],
+      "simplified": "虚伪"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2049,
+      "matches": [],
+      "simplified": "需求"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2050,
+      "matches": [],
+      "simplified": "许可"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2051,
+      "matches": [],
+      "simplified": "序言"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2052,
+      "matches": [],
+      "simplified": "畜牧"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2053,
+      "matches": [],
+      "simplified": "酗酒"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2054,
+      "matches": [],
+      "simplified": "宣誓"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2055,
+      "matches": [],
+      "simplified": "宣扬"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2056,
+      "matches": [],
+      "simplified": "喧哗"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2057,
+      "matches": [],
+      "simplified": "悬挂"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2058,
+      "matches": [],
+      "simplified": "悬念"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2059,
+      "matches": [],
+      "simplified": "悬殊"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2060,
+      "matches": [],
+      "simplified": "悬崖峭壁"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2061,
+      "matches": [],
+      "simplified": "旋律"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2062,
+      "matches": [],
+      "simplified": "旋转"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2063,
+      "matches": [],
+      "simplified": "选拔"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2064,
+      "matches": [],
+      "simplified": "选举"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2065,
+      "matches": [],
+      "simplified": "选手"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2066,
+      "matches": [],
+      "simplified": "炫耀"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2234,
+      "matches": [],
+      "simplified": "运算"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2235,
+      "matches": [],
+      "simplified": "运行"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2456,
+      "matches": [],
+      "simplified": "琢磨"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2457,
+      "matches": [],
+      "simplified": "姿态"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2458,
+      "matches": [],
+      "simplified": "资本"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2459,
+      "matches": [],
+      "simplified": "资产"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2460,
+      "matches": [],
+      "simplified": "资深"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2461,
+      "matches": [],
+      "simplified": "资助"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2462,
+      "matches": [],
+      "simplified": "滋润"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2463,
+      "matches": [],
+      "simplified": "滋味"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2464,
+      "matches": [],
+      "simplified": "子弹"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2465,
+      "matches": [],
+      "simplified": "自卑"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2466,
+      "matches": [],
+      "simplified": "自发"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2467,
+      "matches": [],
+      "simplified": "自力更生"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2468,
+      "matches": [],
+      "simplified": "自满"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2469,
+      "matches": [],
+      "simplified": "自主"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2470,
+      "matches": [],
+      "simplified": "宗教"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2471,
+      "matches": [],
+      "simplified": "宗旨"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2472,
+      "matches": [],
+      "simplified": "棕色"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2473,
+      "matches": [],
+      "simplified": "踪迹"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2474,
+      "matches": [],
+      "simplified": "总而言之"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2475,
+      "matches": [],
+      "simplified": "总和"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2476,
+      "matches": [],
+      "simplified": "纵横"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2477,
+      "matches": [],
+      "simplified": "走廊"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2478,
+      "matches": [],
+      "simplified": "走漏"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2479,
+      "matches": [],
+      "simplified": "走私"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2480,
+      "matches": [],
+      "simplified": "揍"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2481,
+      "matches": [],
+      "simplified": "租赁"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2482,
+      "matches": [],
+      "simplified": "足以"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2483,
+      "matches": [],
+      "simplified": "阻碍"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2484,
+      "matches": [],
+      "simplified": "阻拦"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2485,
+      "matches": [],
+      "simplified": "阻挠"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2486,
+      "matches": [],
+      "simplified": "祖父"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2487,
+      "matches": [],
+      "simplified": "祖国"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2488,
+      "matches": [],
+      "simplified": "祖先"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2489,
+      "matches": [],
+      "simplified": "钻研"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2490,
+      "matches": [],
+      "simplified": "钻石"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2491,
+      "matches": [],
+      "simplified": "嘴唇"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2492,
+      "matches": [],
+      "simplified": "罪犯"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2493,
+      "matches": [],
+      "simplified": "尊严"
+    },
+    {
+      "level": 6,
+      "local_sequence": 2494,
+      "matches": [],
+      "simplified": "遵循"
+    }
+  ]
+}

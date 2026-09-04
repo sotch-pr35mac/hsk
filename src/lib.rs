@@ -1,95 +1,34 @@
-/*
- * @author		:: Preston Wang-Stosur-Bassett <p.wanstobas@gmail.com>
- * @date		:: October 8, 2020
- * @description	:: Return HSK Level for Simplified Chinese Characters
-*/
-
-//! ### About
-//! Return HSK Level for Simplified Chinese Characters
-//! 
-//! ### Usage
-//! ```rust
-//! extern crate hsk;
-//! 
-//! use hsk::Hsk;
-//! 
-//! fn main() {
-//! 	let hsk_list = Hsk::new();
-//! 	let character: &str = "成为";
-//! 	let result: u8 = hsk_list.get_hsk(character);
-//! 	println!("{:?}", result); // --> 4
-//! }
+//! Authoritative, explicitly versioned HSK and Chinese-proficiency data.
+//!
+//! The 2021 GF0025 proficiency standard and the current HSK examination
+//! syllabus are related but distinct classifications. Callers always select a
+//! [`HskSystem`], and reading ambiguity is represented by [`LookupOutcome`].
+//!
+//! ```
+//! use hsk::{HskCatalog, HskSystem, LookupOutcome, Orthography};
+//!
+//! let catalog = HskCatalog::new();
+//! let result = catalog.lookup(
+//!     HskSystem::Hsk2015,
+//!     Orthography::Traditional("愛"),
+//!     "ai4",
+//! )?;
+//! assert!(matches!(result, LookupOutcome::Unique(_)));
+//! # Ok::<(), hsk::LookupError>(())
 //! ```
 
-extern crate bincode;
+mod catalog;
+mod model;
+mod normalize_shared;
 
-mod hsk;
-pub use self::hsk::Hsk as Hsk;
+mod data {
+    use crate::{Classification, EvidenceStatus, HskLevel, HskSystem};
 
-#[cfg(test)]
-mod tests {
-	use super::*;
-	
-	#[test]
-	fn test_no_hsk() {
-		let	hsk = Hsk::new();
-		let character: &str = "你好";
-		let expected: u8 = 0;
-		let actual: u8 = hsk.get_hsk(character);
-		assert_eq!(expected, actual);
-	}
-	
-	#[test]
-	fn test_hsk_1() {
-		let hsk = Hsk::new();
-		let character: &str = "飞机";
-		let expected: u8 = 1;
-		let actual: u8 = hsk.get_hsk(character);
-		assert_eq!(expected, actual);
-	}
-	
-	#[test]
-	fn test_hsk_2() {
-		let hsk = Hsk::new();
-		let character: &str = "火车站";
-		let expected: u8 = 2;
-		let actual: u8 = hsk.get_hsk(character);
-		assert_eq!(expected, actual);
-	}
-	
-	#[test]
-	fn test_hsk_3() {
-		let hsk = Hsk::new();
-		let character: &str = "地方";
-		let expected: u8 = 3;
-		let actual: u8 = hsk.get_hsk(character);
-		assert_eq!(expected, actual);
-	}
-	
-	#[test]
-	fn test_hsk_4() {
-		let hsk = Hsk::new();
-		let character: &str = "成为";
-		let expected: u8 = 4;
-		let actual: u8 = hsk.get_hsk(character);
-		assert_eq!(expected, actual);
-	}
-	
-	#[test]
-	fn test_hsk_5() {
-		let hsk = Hsk::new();
-		let character: &str = "本科";
-		let expected: u8 = 5;
-		let actual: u8 = hsk.get_hsk(character);
-		assert_eq!(expected, actual);
-	}
-	
-	#[test]
-	fn test_hsk_6() {
-		let hsk = Hsk::new();
-		let character: &str = "版本";
-		let expected: u8 = 6;
-		let actual: u8 = hsk.get_hsk(character);
-		assert_eq!(expected, actual);
-	}	
+    include!(concat!(env!("OUT_DIR"), "/hsk_generated.rs"));
 }
+
+pub use catalog::HskCatalog;
+pub use model::{
+    Classification, EvidenceStatus, HskLevel, HskSystem, LevelScope, LookupError, LookupOutcome,
+    Orthography, WordMatch,
+};

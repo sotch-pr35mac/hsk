@@ -13,7 +13,7 @@ identity.
 
 [`sources.json`](sources.json) records the exact revision, last update, claimed
 edition, license, expected counts, derivation route, independence limitations,
-artifact URL, and SHA-256 for six verification sources spanning all three
+artifact URL, and SHA-256 for verification sources spanning all three
 systems. The JSON shape is documented by
 [`schema/source-manifest.schema.json`](schema/source-manifest.schema.json).
 
@@ -54,8 +54,8 @@ assignment. Required and optional fields are defined by
 `pinyin_normalized` is preferred when the authoritative generator supplies it.
 The comparison normalizer recognizes tone marks and numbers, NFC/NFD, `ü`/`u:`/
 `v`, case, spaces, hyphens, straight/curly apostrophes, neutral `0`/`5`, and
-slash-separated readings. Apostrophes normalize to straight ASCII but remain in
-the key because erasing one can merge different syllabifications. Headwords get
+slash-separated readings. Apostrophes are accepted but omitted from the key,
+matching the public Rust lookup normalizer. Headwords get
 Unicode normalization and trimming only—there is no implicit script conversion.
 
 Primary lexical identity is the intersection of explicitly supplied simplified

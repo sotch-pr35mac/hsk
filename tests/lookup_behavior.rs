@@ -1,4 +1,4 @@
-use hsk::{HskCatalog, HskSystem, LookupOutcome, Orthography};
+use hsk::{EvidenceStatus, HskCatalog, HskSystem, LookupOutcome, Orthography};
 
 fn assert_unique(catalog: &HskCatalog, orthography: Orthography<'_>, pinyin: &str) {
     assert!(matches!(
@@ -117,16 +117,26 @@ fn orthography_only_lookup_does_not_choose_a_polyphonic_reading() {
 fn strict_lookup_resolves_known_polyphonic_readings_independently() {
     let catalog = HskCatalog::new();
 
-    for pinyin in ["chang2", "zhang3"] {
-        assert!(matches!(
-            catalog.lookup(
-                HskSystem::ProficiencyStandard2021,
-                Orthography::Simplified("长"),
-                pinyin,
-            ),
-            Ok(LookupOutcome::Unique(_))
-        ));
-    }
+    assert!(matches!(
+        catalog.lookup(
+            HskSystem::ProficiencyStandard2021,
+            Orthography::Simplified("长"),
+            "chang2",
+        ),
+        Ok(LookupOutcome::Unique(_))
+    ));
+
+    // The standard also classifies the suffix 长（秘书长）at level six.
+    // It shares zhǎng with the standalone level-two verb, so strict lexical
+    // identity correctly retains both source assignments.
+    assert!(matches!(
+        catalog.lookup(
+            HskSystem::ProficiencyStandard2021,
+            Orthography::Simplified("长"),
+            "zhang3",
+        ),
+        Ok(LookupOutcome::Ambiguous(ref candidates)) if candidates.len() == 2
+    ));
 }
 
 #[test]
@@ -136,4 +146,63 @@ fn orthography_only_absence_is_explicit() {
         catalog.lookup_orthography(HskSystem::Hsk2015, Orthography::Simplified("𠮷野家"),),
         Ok(LookupOutcome::NotFound)
     ));
+}
+
+#[test]
+fn unresolved_source_pinyin_is_not_promoted_to_strict_identity() {
+    let catalog = HskCatalog::new();
+    let strict = catalog.lookup(
+        HskSystem::ProficiencyStandard2021,
+        Orthography::Simplified("爱"),
+        "ai4",
+    );
+    assert!(matches!(strict, Ok(LookupOutcome::NotFound)), "{strict:?}");
+    let orthography = catalog
+        .lookup_orthography(
+            HskSystem::ProficiencyStandard2021,
+            Orthography::Simplified("爱"),
+        )
+        .unwrap();
+    let LookupOutcome::Unique(found) = orthography else {
+        panic!("unexpected outcome: {orthography:?}");
+    };
+    assert_eq!(
+        found.classification().evidence(),
+        EvidenceStatus::AuthoritativeOrthographyOnly
+    );
+}
+
+#[test]
+fn every_gf0025_evidence_tier_is_explicit() {
+    let catalog = HskCatalog::new();
+    let cases = [
+        ("爱好", Some("ai4hao4"), EvidenceStatus::AuthoritativeSource),
+        ("倒", Some("dao4"), EvidenceStatus::AuthoritativeCorrection),
+        (
+            "爸爸",
+            None,
+            EvidenceStatus::VerificationCandidateUnresolved,
+        ),
+    ];
+    for (word, pinyin, expected) in cases {
+        let outcome = match pinyin {
+            Some(reading) => catalog
+                .lookup(
+                    HskSystem::ProficiencyStandard2021,
+                    Orthography::Simplified(word),
+                    reading,
+                )
+                .unwrap(),
+            None => catalog
+                .lookup_orthography(
+                    HskSystem::ProficiencyStandard2021,
+                    Orthography::Simplified(word),
+                )
+                .unwrap(),
+        };
+        let LookupOutcome::Unique(found) = outcome else {
+            panic!("unexpected outcome for {word}: {outcome:?}");
+        };
+        assert_eq!(found.classification().evidence(), expected);
+    }
 }

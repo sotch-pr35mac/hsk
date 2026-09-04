@@ -33,16 +33,17 @@ jobs:
       - run: cargo test --all-targets --all-features
 
   generated-data:
-    name: Generated data is reproducible
+    name: Generated data and verification tooling
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: dtolnay/rust-toolchain@stable
       - uses: actions/setup-python@v5
         with:
-          python-version: "3.13"
-          cache: pip
-          cache-dependency-path: tools/requirements.lock
-      - run: python -m pip install --require-hashes -r tools/requirements.lock
-      - run: cargo xtask data check --offline
-      - run: git diff --exit-code -- data generated reports
+          python-version: "3.11"
+      - run: python -m unittest discover -s tools -p 'test_*.py' -v
+      - run: python -m unittest discover -s verification/tests -v
+      - run: python tools/hsk_data.py validate-config
+      - run: python tools/hsk_data.py validate --source hsk2015 --canonical data/hsk-sources/canonical/hsk2015.csv
+      - run: python tools/hsk_data.py validate --source proficiency2021 --canonical data/hsk-sources/canonical/proficiency2021.csv
+      - run: python tools/hsk_data.py validate --source hsk_exam2025 --canonical data/hsk-sources/canonical/hsk_exam2025.csv

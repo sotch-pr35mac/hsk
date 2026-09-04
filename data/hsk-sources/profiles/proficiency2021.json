@@ -1,12 +1,12 @@
 {
   "input_kind": "pdf-lines",
   "notes": [
-    "DRAFT: page ranges and row layouts must be derived from the fingerprinted official PDF's vocabulary appendix.",
-    "Keep each confirmed layout as an anchored expression; never add a catch-all expression to maximize match percentage.",
-    "If native text fails only on selected pages, render/OCR those pages separately and mark their raw rows ocr-page rather than rerunning OCR over the document."
+    "Reviewed against the fingerprinted 260-page MOE scan; native extraction exposes only the 仅供查阅 watermark.",
+    "The vocabulary appendix occupies PDF pages 42-175. Positioned OCR observations are parsed by tools/canonicalize_gf0025.py rather than these native-line fallback expressions.",
+    "Unique authoritative sequence/headword/pinyin matches, headword-only matches, and candidate-only rows retain distinct extraction statuses."
   ],
-  "page_ranges": [],
-  "reviewed": false,
+  "page_ranges": [[42, 175]],
+  "reviewed": true,
   "row_patterns": [
     "^(?P<sequence>[0-9]+)\\s+(?P<simplified>[\\u3400-\\u9fff·]+)\\s+(?P<pinyin>[A-Za-züÜvV:āáǎàēéěèīíǐìōóǒòūúǔùǖǘǚǜńňǹḿ\\s'’]+)\\s+(?P<part_of_speech>[^0-9]+?)\\s+(?P<level>[1-6]|7[-–—]9)$",
     "^(?P<sequence>[0-9]+)\\s+(?P<simplified>[\\u3400-\\u9fff·]+)\\s+(?P<level>[1-6]|7[-–—]9)$"

@@ -1,5 +1,31 @@
 {
-  "corrections": [],
+  "corrections": [
+    {
+      "action": "replace_fields",
+      "evidence": "GF0025-2021 PDF page 49, level-two row 111 visibly prints dào; the OCR base reading and independent query export both identify dao.",
+      "fields": {
+        "pinyin_raw": "dào",
+        "source_sequence": "611"
+      },
+      "id": "gf2021-p49-row111-dao",
+      "reason": "The candidate transcription repeats dǎo from row 109, but the authoritative row has fourth tone.",
+      "source_id": "proficiency2021",
+      "source_locator": "page:49;level-sequence:111"
+    },
+    {
+      "action": "replace_fields",
+      "evidence": "GF0025-2021 PDF page 57, level-two row 715 visibly prints zhǎng and the part of speech 动.",
+      "fields": {
+        "part_of_speech_raw": "动",
+        "pinyin_raw": "zhǎng",
+        "source_sequence": "1215"
+      },
+      "id": "gf2021-p57-row715-zhang",
+      "reason": "The candidate transcription duplicates row 55 (cháng, 形); the authoritative row is the verbal reading zhǎng.",
+      "source_id": "proficiency2021",
+      "source_locator": "page:57;level-sequence:715"
+    }
+  ],
   "notes": [
     "Every correction must cite an authoritative page, sheet/row, or other review evidence.",
     "Corrections preserve raw extracted files; they only transform the canonical layer.",

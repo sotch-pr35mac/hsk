@@ -24,9 +24,12 @@ class NormalizeTests(unittest.TestCase):
         self.assertEqual(normalize_pinyin("ma"), normalize_pinyin("ma5"))
         self.assertEqual(normalize_pinyin("ma"), normalize_pinyin("ma0"))
 
-    def test_apostrophe_variants_are_normalized_but_not_erased(self):
+    def test_syllabic_interjection_tone_number_is_equivalent(self):
+        self.assertEqual(normalize_pinyin("ǹg"), normalize_pinyin("ng4"))
+
+    def test_apostrophe_variants_are_equivalent(self):
         self.assertEqual(normalize_pinyin("xī’ān"), normalize_pinyin("xi1'an1"))
-        self.assertNotEqual(normalize_pinyin("xī’ān"), normalize_pinyin("xi1an1"))
+        self.assertEqual(normalize_pinyin("xī’ān"), normalize_pinyin("xi1an1"))
 
     def test_slash_readings_form_a_sorted_set(self):
         self.assertEqual(

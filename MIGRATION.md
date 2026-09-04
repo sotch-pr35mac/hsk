@@ -61,6 +61,13 @@ decomposed Unicode, `ü`/`u:`/`v`, case and spacing differences, common
 apostrophes, and neutral-tone `0`/`5` conventions. Invalid input returns a
 typed error rather than being silently changed into another reading.
 
+`NotFound` from a strict lookup can also mean the authoritative source did not
+provide, or extraction could not safely verify, that row's reading. Use
+orthography-only lookup when classification is useful without asserting a
+pronunciation; the crate does not promote third-party candidate pinyin to
+lexical identity. Inspect `Classification::evidence()` when your application
+must require a particular provenance tier.
+
 If no pinyin is available, use the orthography-only API and handle ambiguity:
 
 ```rust

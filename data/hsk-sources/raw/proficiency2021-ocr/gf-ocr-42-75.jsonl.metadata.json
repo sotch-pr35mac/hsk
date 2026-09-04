@@ -1,0 +1,13 @@
+{
+  "document_sha256": "e451fdf0899d9267bbd122db66e7e75bdd2851ad1e6732e47b6e960290d73a63",
+  "first_page": 42,
+  "last_page": 75,
+  "observation_count": 8392,
+  "ocr_engine": "rapidocr-onnxruntime 1.4.4",
+  "onnxruntime": "1.19.2",
+  "output_sha256": "39277509346045cf14190c567cc3663ff49ed71435552fb510b1dd205da9baee",
+  "platform": "macOS-26.5.2-arm64-arm-64bit",
+  "python": "3.9.6",
+  "renderer": "PyMuPDF 1.26.4",
+  "scale": 3.0
+}

@@ -43,7 +43,10 @@ def _mark_numbered_syllable(base: str, tone: int) -> str:
         ]
         if not vowel_positions:
             # Syllabic interjections such as m2 and ng4 are valid pinyin.
-            mark_at = len(base) - 1
+            consonant_positions = [
+                index for index, character in enumerate(base) if character in "mn"
+            ]
+            mark_at = consonant_positions[-1] if consonant_positions else len(base) - 1
         else:
             mark_at = vowel_positions[-1]
 
@@ -54,8 +57,9 @@ def _mark_numbered_syllable(base: str, tone: int) -> str:
 def _normalize_alternative(value: str) -> str:
     value = unicodedata.normalize("NFC", value.translate(_APOSTROPHES)).lower()
     value = value.replace("u:", "ü").replace("v", "ü")
-    # Spaces and hyphens vary between otherwise identical source transcriptions.
-    value = re.sub(r"[\s\-]+", "", value)
+    # These separators vary between otherwise identical transcriptions. The
+    # Rust lookup normalizer intentionally treats them as spelling variants.
+    value = re.sub(r"[\s\-']+", "", value)
     if not value:
         raise ValueError("pinyin alternative must not be blank")
     if not _ALLOWED_PINYIN.fullmatch(unicodedata.normalize("NFD", value)):
@@ -67,10 +71,7 @@ def _normalize_alternative(value: str) -> str:
         for match in _NUMBERED_SYLLABLE.finditer(value):
             between = value[cursor : match.start()]
             if between:
-                if between == "'":
-                    output.append(between)
-                else:
-                    raise ValueError(f"mixed or malformed numbered pinyin {value!r}")
+                raise ValueError(f"mixed or malformed numbered pinyin {value!r}")
             output.append(_mark_numbered_syllable(match.group(1), int(match.group(2))))
             cursor = match.end()
         if value[cursor:]:
@@ -84,8 +85,8 @@ def normalize_pinyin(value: str) -> tuple[str, ...]:
     """Return a sorted set of normalized pronunciations.
 
     Slash-delimited readings are identities of the same source row but remain
-    separate keys. Straight and curly apostrophes normalize to straight ASCII;
-    apostrophes are retained because their presence can disambiguate syllables.
+    separate keys. Apostrophes, whitespace, and hyphens are accepted spelling
+    variants and omitted from the comparison key, matching the Rust API.
     """
 
     alternatives = {
