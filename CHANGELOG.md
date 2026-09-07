@@ -1,48 +1,30 @@
 # Changelog
 
-All notable changes to this project are documented in this file. The format is
-based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this
-project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
-
 ## [1.0.0] - Unreleased
 
 ### Added
 
-- Separate, explicitly selectable classifications for the HSK 2.0 / 2015
-  examination vocabulary, the 2021 International Chinese Education proficiency
-  standard, and the current HSK 3.0 examination syllabus.
-- Reading-aware lookup using simplified or traditional orthography and
-  normalized pinyin.
-- Orthography-only lookup with explicit `Unique`, `Ambiguous`, and `NotFound`
-  outcomes.
-- Queries across every supported classification and exact-level or cumulative
-  vocabulary enumeration.
-- Deterministic extraction and generation tooling, source fingerprints,
-  machine-readable discrepancy reports, and data-integrity checks.
+- Named lookup for the 2015 HSK vocabulary, GF0025-2021 proficiency standard,
+  and 2025/2026 HSK examination syllabus.
+- Optional normalized-pinyin qualification through `HskQuery`.
+- `levels_all` for matching classifications.
 
 ### Changed
 
-- Replaced the bundled, unattributed HSK map with data generated from official
-  CTI and Ministry of Education publications.
-- Lookups now return typed classification results rather than numeric sentinel
-  values.
-- Static generated indexes replace per-instance bincode deserialization and
-  `HashMap` construction.
-- Runtime and benchmark dependencies were refreshed to
-  `unicode-normalization` 0.1.25 and Criterion 0.7.0 (Rust 1.85 compatible).
-- Extraction and verification tooling moved to the standalone `hsk_tooling`
-  repository; the published crate now has an explicit Rust-only file list.
+- Replaced numeric sentinel results with `HskLevel` values and empty results.
+- Replaced runtime deserialization and hash-map construction with a compact,
+  embedded binary index. Startup performs no parsing or heap allocation.
+- Reduced quick-benchmark lookup latency by roughly 39–47% across hits, misses,
+  normalization-heavy queries, multi-level results, and all-system lookup.
+- Reduced the release archive from 3.1 MiB to 625.3 KiB uncompressed and from
+  563.4 KiB to 244.9 KiB compressed.
+- Updated `unicode-normalization` to 0.1.25 and Criterion to 0.7.0 while
+  retaining Rust 1.85 compatibility.
+- Moved extraction, verification, provenance, and source data to the standalone
+  `hsk_tooling` repository.
 
 ### Removed
 
-- Removed `Hsk::new()` and `Hsk::get_hsk(&str) -> u8`. See
-  [`MIGRATION.md`](MIGRATION.md) for equivalent versioned queries.
-- Removed the convention that level `0` means “not found.” Absence and
-  ambiguity are now separate outcomes.
-
-### Compatibility
-
-- This is a major-version release. Callers must select an `HskSystem`, use the
-  `HskLevel` enum instead of numeric levels, and handle ambiguous readings.
-- The minimum supported Rust version is Rust 1.85, required by Rust edition
-  2024.
+- Removed `Hsk::new()` and `Hsk::get_hsk`.
+- Removed traditional-form enrichment, vocabulary enumeration, and runtime
+  provenance metadata from the public API.

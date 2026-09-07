@@ -1,96 +1,33 @@
 # hsk
 
-Authoritative, explicitly versioned HSK and Chinese-proficiency vocabulary for
-Rust. Version 1.0 supports three classifications without conflating them:
+Versioned HSK vocabulary level lookup for Rust. The crate includes:
 
-- HSK 2.0 / **2015 examination vocabulary** (six levels);
-- **GF0025-2021**, the International Chinese Education proficiency standard
-  (three stages, nine levels); and
-- the current **HSK examination syllabus**, published in November 2025 for
-  implementation in July 2026.
-
-The 2021 national standard is a proficiency framework used for learning,
-teaching, testing, and assessment. It is related to—but is not the same
-vocabulary classification as—the newer examination syllabus.
-
-## Lookup
+- the six-level HSK examination vocabulary published in 2015;
+- the GF0025-2021 Chinese proficiency standard; and
+- the HSK examination syllabus published in 2025 for use from July 2026.
 
 ```rust
-use hsk::{HskCatalog, HskSystem, LookupOutcome, Orthography};
+use hsk::{HskLevel, HskQuery, HskSystem, levels};
 
-let catalog = HskCatalog::new();
-let result = catalog.lookup(
-    HskSystem::Hsk2015,
-    Orthography::Traditional("愛"),
-    "ai4", // tone marks and tone numbers normalize identically
+let found = levels(HskSystem::Hsk2015, HskQuery::new("爱"))?;
+assert_eq!(found, [HskLevel::One]);
+
+let reading = levels(
+    HskSystem::ProficiencyStandard2021,
+    HskQuery::new("长").pinyin("zhang3"),
 )?;
-
-if let LookupOutcome::Unique(found) = result {
-    println!("{}", found.classification().level());
-}
-# Ok::<(), hsk::LookupError>(())
+assert_eq!(reading, [HskLevel::Two, HskLevel::Six]);
+# Ok::<(), hsk::HskError>(())
 ```
 
-Use `lookup_orthography` when no reading is known. It returns `Ambiguous` when
-multiple lexical readings or senses share the supplied spelling; it never
-chooses one arbitrarily. `lookup_all` and `lookup_all_orthography` return one
-explicit outcome for every supported system.
+Queries use simplified Chinese. Pinyin is optional and can distinguish entries
+with the same simplified form. `levels_all` returns matches across all three
+classifications. Pinyin accepts tone marks or numbers, `ü`/`u:`/`v`, and common
+spacing and apostrophe variants. The 2015 source does not publish pinyin, so a
+valid pinyin qualifier does not filter its simplified-word matches.
 
-Pinyin comparison accepts tone marks or numbers, composed or decomposed
-Unicode, `ü`/`u:`/`v`, capitalization, spacing and apostrophe variants, and
-neutral tones written without a number or as `0`/`5`.
-
-The official 2015 workbook contains no pinyin or traditional column. Reviewed
-same-edition enrichment supplies those fields for 4,796 of 5,000 rows; strict
-lookup for the remaining 204 returns `NotFound`, while simplified
-orthography-only classification remains available. The unresolved list is
-checked in rather than filled from historical or fuzzy data.
-
-GF0025 candidate pinyin is likewise never promoted silently: strict lookup is
-enabled only for 9,905 fully OCR-matched rows plus one explicitly reviewed
-authoritative correction. The remaining rows continue to classify by
-orthography. `Classification::evidence()` exposes whether a result is directly
-authoritative, authoritatively corrected, orthography-only, or an unresolved
-verification candidate; the complete review detail remains in the validation
-report.
-
-## Enumerate levels
-
-```rust
-use hsk::{HskCatalog, HskLevel, HskSystem, LevelScope};
-
-let catalog = HskCatalog::new();
-let introduced = catalog.words(
-    HskSystem::Hsk2015,
-    HskLevel::Three,
-    LevelScope::Exact,
-)?;
-let expected_by_level = catalog.words(
-    HskSystem::Hsk2015,
-    HskLevel::Three,
-    LevelScope::Cumulative,
-)?;
-assert!(expected_by_level.len() >= introduced.len());
-# Ok::<(), hsk::LookupError>(())
-```
-
-`SevenToNine` is the shared advanced band printed by the newer documents. The
-crate does not invent separate level-seven, -eight, or -nine vocabulary lists.
-
-## Provenance and reproduction
-
-[`data/hsk-sources/PROVENANCE.md`](data/hsk-sources/PROVENANCE.md) records the
-authoritative URLs, document hashes, extraction methods, counts, and exported
-file hashes. The extraction and independent verification pipeline is maintained
-in the sibling `hsk_tooling` repository; it is not shipped with this crate.
-
-The Rust build converts reviewed CSV to static arrays and sorted lookup indexes.
-There is no runtime bincode parsing or per-catalog hash-map construction.
-
-Version 1.0 is a breaking release. See [`MIGRATION.md`](MIGRATION.md).
+Version 1.0 changes the API from earlier releases. See [MIGRATION.md](MIGRATION.md).
 
 ## License
 
-The library is MIT licensed. Source documents and
-third-party verification data retain their respective terms; consult the
-provenance files before redistributing them.
+MIT
