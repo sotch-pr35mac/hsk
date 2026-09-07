@@ -1,6 +1,6 @@
 # Changelog
 
-## [1.0.0] - Unreleased
+## [1.0.0] - 2026-09-07
 
 Version 1.0.0 is a breaking redesign from the published 0.1.1 release.
 
@@ -17,9 +17,7 @@ Version 1.0.0 is a breaking redesign from the published 0.1.1 release.
   results.
 - Catalog data is embedded in a compact binary index and queried by binary
   search.
-- Matching is explicitly simplified-only.
 
 ### Removed
 
 - The 0.1.1 `Hsk::new()` and `Hsk::get_hsk()` API.
-- Traditional-form enrichment and vocabulary enumeration from the public API.

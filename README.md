@@ -40,10 +40,6 @@ For example, `nǚér`, `nǚ'ér`, `nv3er2`, and `nu:3 er2` are equivalent. Use
 `levels_all` to search every classification. A missing word returns an empty
 result, while malformed input returns `HskError`.
 
-## Contributors
-
-- [Preston Wang-Stosur-Bassett](https://github.com/sotch-pr35mac)
-
 ## License
 
 Licensed under the [MIT License](LICENSE).
