@@ -2,17 +2,20 @@
 name = "hsk"
 version = "1.0.0"
 authors = ["Preston Wang-Stosur-Bassett <p.wanstobas@gmail.com>"]
-description = "Versioned HSK and Chinese proficiency level lookup"
+description = "Return versioned HSK level for Simplified Chinese characters"
 repository = "https://github.com/sotch-pr35mac/hsk"
-readme = false
+readme = "README.md"
 keywords = ["chinese", "hanzi", "hsk"]
 categories = ["text-processing"]
 license = "MIT"
 edition = "2024"
 rust-version = "1.85"
 include = [
+    "/README.md",
+    "/CHANGELOG.md",
+    "/MIGRATION.md",
+    "/data/hsk.data",
     "/src/**",
-    "/data/hsk.bin",
     "/tests/**",
     "/benches/**",
     "LICENSE",

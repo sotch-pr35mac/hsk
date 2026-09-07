@@ -1,3 +1,18 @@
+//! Normalize query spellings to the catalog's comparison keys.
+//!
+//! Headwords use NFC: already-normalized or ASCII input is borrowed through a
+//! [`Cow`], while other input gets one owned normalized string. Pinyin is
+//! streamed through NFD decomposition so precomposed and combining tone marks
+//! are equivalent. Tone placement follows standard pinyin (`a`, then `e`, then
+//! `ou`, otherwise the final eligible vowel); numbered and marked tones become
+//! the same numbered representation, including neutral tones `0` and `5`.
+//!
+//! Separators end syllables, while a second marked vowel can also establish a
+//! syllable boundary (so `nǚér` and `nǚ'ér` agree). Umlauts become `v`, accepting
+//! `ü`, `u:`, and `v`. Invalid tone placement, repeated tones, unsupported
+//! characters, and malformed separators are rejected. The parser reuses its
+//! syllable buffer and allocates one output string for the normalized key.
+
 use std::borrow::Cow;
 
 use unicode_normalization::UnicodeNormalization;
@@ -71,7 +86,11 @@ pub(crate) fn normalize_pinyin(input: &str) -> Result<String, &'static str> {
             if let Some((_, next)) = decomposed.peek().copied() {
                 if next.is_ascii_alphabetic()
                     && matches!(next.to_ascii_lowercase(), 'a' | 'e' | 'i' | 'o' | 'u')
+                    && syllable.last() != Some(&'v')
                 {
+                    // A following vowel is ambiguous after an ordinary
+                    // syllable, but `nv3e...` is the unseparated spelling of
+                    // `nǚ ér`: `v` marks the end of the umlaut syllable.
                     return Err("a numbered syllable must end before a following vowel");
                 }
             }

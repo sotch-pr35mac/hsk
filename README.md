@@ -1,13 +1,18 @@
 # hsk
 
-Versioned HSK vocabulary level lookup for Rust. The crate includes:
+## About
 
-- the six-level HSK examination vocabulary published in 2015;
-- the GF0025-2021 Chinese proficiency standard; and
-- the HSK examination syllabus published in 2025 for use from July 2026.
+Return versioned HSK level for Simplified Chinese characters.
+
+This Rust crate includes the six-level HSK examination vocabulary published
+in 2015, the GF0025-2021 Chinese proficiency standard, and the HSK
+examination syllabus published in 2025 for use from July 2026. Lookups are
+simplified-only and return typed, ordered levels.
+
+## Usage
 
 ```rust
-use hsk::{HskLevel, HskQuery, HskSystem, levels};
+use hsk::{levels, HskLevel, HskQuery, HskSystem};
 
 let found = levels(HskSystem::Hsk2015, HskQuery::new("爱"))?;
 assert_eq!(found, [HskLevel::One]);
@@ -20,14 +25,25 @@ assert_eq!(reading, [HskLevel::Two, HskLevel::Six]);
 # Ok::<(), hsk::HskError>(())
 ```
 
-Queries use simplified Chinese. Pinyin is optional and can distinguish entries
-with the same simplified form. `levels_all` returns matches across all three
-classifications. Pinyin accepts tone marks or numbers, `ü`/`u:`/`v`, and common
-spacing and apostrophe variants. The 2015 source does not publish pinyin, so a
-valid pinyin qualifier does not filter its simplified-word matches.
+Pinyin is optional and qualifies a simplified-word match. The normalizer:
 
-Version 1.0 changes the API from earlier releases. See [MIGRATION.md](MIGRATION.md).
+- accepts exact catalog spellings, tone marks, numbered tones, and neutral
+  tones `0` and `5`;
+- ignores capitalization and common whitespace, apostrophe, hyphen, middle-dot,
+  and similar syllable separators;
+- treats `ü`, `u:`, and `v` equivalently;
+- rejects empty, malformed, repeated, or unsupported pinyin input; and
+- does not filter HSK 2015 matches by pinyin because that source does not
+  publish pinyin.
+
+For example, `nǚér`, `nǚ'ér`, `nv3er2`, and `nu:3 er2` are equivalent. Use
+`levels_all` to search every classification. A missing word returns an empty
+result, while malformed input returns `HskError`.
+
+## Contributors
+
+- [Preston Wang-Stosur-Bassett](https://github.com/sotch-pr35mac)
 
 ## License
 
-MIT
+Licensed under the [MIT License](LICENSE).

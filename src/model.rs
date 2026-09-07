@@ -1,3 +1,13 @@
+//! Public query and result types for the HSK catalogs.
+//!
+//! [`HskSystem`] identifies a source document, [`HskLevel`] identifies a
+//! level within that document, [`HskQuery`] carries a simplified word and an
+//! optional pinyin reading, and [`HskError`] describes malformed input.
+//!
+//! The enums are `#[non_exhaustive]` so adding a published classification,
+//! level, or error in a future release does not make downstream matches fail
+//! to compile.
+
 use core::fmt;
 
 /// A published HSK or Chinese-proficiency classification.
@@ -13,7 +23,8 @@ pub enum HskSystem {
 }
 
 impl HskSystem {
-    pub(crate) const fn index(self) -> usize {
+    /// Return this system's zero-based slot in the embedded catalog header.
+    pub(crate) const fn catalog_index(self) -> usize {
         match self {
             Self::Hsk2015 => 0,
             Self::ProficiencyStandard2021 => 1,
@@ -35,11 +46,17 @@ impl fmt::Display for HskSystem {
 /// A level assigned by a selected classification.
 #[derive(Clone, Copy, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 pub enum HskLevel {
+    /// Level 1.
     One,
+    /// Level 2.
     Two,
+    /// Level 3.
     Three,
+    /// Level 4.
     Four,
+    /// Level 5.
     Five,
+    /// Level 6.
     Six,
     /// The shared advanced band used by the newer documents.
     SevenToNine,
@@ -103,7 +120,9 @@ impl<'a> HskQuery<'a> {
 #[derive(Clone, Debug, Eq, PartialEq)]
 #[non_exhaustive]
 pub enum HskError {
+    /// The simplified query was empty or contained only whitespace.
     EmptyWord,
+    /// Pinyin could not be parsed; the value gives the validation reason.
     InvalidPinyin(&'static str),
 }
 

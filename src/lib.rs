@@ -1,4 +1,8 @@
-//! Versioned HSK and Chinese-proficiency level lookup.
+//! Return versioned HSK level for Simplified Chinese characters.
+//!
+//! The crate embeds the published simplified-word catalogs and performs
+//! allocation-free catalog lookup. Query normalization allocates only when
+//! normalization or a returned result requires it.
 //!
 //! ```
 //! use hsk::{HskLevel, HskQuery, HskSystem};
@@ -13,7 +17,7 @@
 
 mod catalog;
 mod model;
-mod normalize_shared;
+mod normalize;
 
 pub use catalog::{levels, levels_all};
 pub use model::{HskError, HskLevel, HskQuery, HskSystem};

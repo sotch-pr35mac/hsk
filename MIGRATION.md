@@ -1,7 +1,7 @@
-# Migrating from 0.1 to 1.0
+# Migrating from 0.1.1 to 1.0.0
 
-Version 1.0 replaces the unversioned numeric lookup with named classifications
-and typed levels.
+Version 1.0.0 replaces the unversioned numeric lookup from 0.1.1 with named
+classifications and typed levels.
 
 Before:
 
@@ -27,7 +27,9 @@ Choose the document explicitly with `HskSystem::Hsk2015`,
 `HskSystem::HskExamSyllabus2025`. An absent word returns an empty vector rather
 than level `0`.
 
-Pinyin is optional. Add it when a reading should qualify the lookup:
+Pinyin is optional. Add it when a reading should qualify the lookup. Tone marks,
+tone numbers, `ü`/`u:`/`v`, capitalization, and common separators normalize to
+the same key:
 
 ```rust
 # use hsk::{HskQuery, HskSystem, levels};

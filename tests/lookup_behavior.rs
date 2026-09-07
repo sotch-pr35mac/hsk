@@ -15,6 +15,20 @@ fn pinyin_forms_normalize_identically() {
 }
 
 #[test]
+fn apostrophe_free_umlaut_pinyin_matches_documented_equivalents() {
+    for pinyin in ["nǚér", "nǚ'ér", "nv3er2", "nu:3 er2"] {
+        assert_eq!(
+            levels(
+                HskSystem::ProficiencyStandard2021,
+                HskQuery::new("女儿").pinyin(pinyin),
+            )
+            .unwrap(),
+            [HskLevel::One]
+        );
+    }
+}
+
+#[test]
 fn pinyin_can_disambiguate_polyphonic_entries() {
     assert_eq!(
         levels(
